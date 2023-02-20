@@ -24,6 +24,11 @@ function Navbar() {
         </li>
         <li>
           <a>
+            <Link href="/createSet">Create Set</Link>
+          </a>
+        </li>
+        <li>
+          <a>
             <Link href="/account">Account</Link>
           </a>
         </li>
