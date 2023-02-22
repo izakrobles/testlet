@@ -67,6 +67,8 @@ function Login() {
                 </p>
                 {/* Click on submit button to submit the form */}
                 <button type="submit">Login</button>
+                <p></p>
+                <p style={{ color: 'black' }}>No Account? Register <a href="/LoginPages/register" style={{ color: 'blue' }}>here</a>.</p>
               </form>
             </div>
           </div>
