@@ -1,7 +1,6 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-// Creating schema
 const schema = Yup.object().shape({
   email: Yup.string()
     .required("Email is a required field")
@@ -14,12 +13,10 @@ const schema = Yup.object().shape({
 function Login() {
   return (
     <>
-      {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
       <Formik
         validationSchema={schema}
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
-          // Alert the input values of the form that we filled
           alert(JSON.stringify(values));
         }}
       >
@@ -33,7 +30,6 @@ function Login() {
         }) => (
           <div className="login">
             <div className="form">
-           {/* Passing handleSubmit parameter tohtml form onSubmit property */}
               <form noValidate onSubmit={handleSubmit}>
                 <span>Login</span>
               {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
@@ -51,7 +47,6 @@ function Login() {
                 <p className="error">
                   {errors.email && touched.email && errors.email}
                 </p>
-                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <input
                   type="password"
                   name="password"
@@ -61,11 +56,9 @@ function Login() {
                   placeholder="Enter password"
                   className="form-control"
                 />
-                 {/* If validation is not passed show errors */}
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
-                {/* Click on submit button to submit the form */}
                 <button type="submit">Login</button>
                 <p></p>
                 <p style={{ color: 'black' }}>No Account? Register <a href="/LoginPages/register" style={{ color: 'blue' }}>here</a>.</p>
