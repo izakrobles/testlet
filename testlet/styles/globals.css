@@ -113,17 +113,16 @@ a {
   font-size: 2rem;
 }
 
-.nav home {
+.nav .home {
   flex-grow: 1;
   font-size: 2rem;
   padding: 0;
-  margin: 0;
   list-style: none;
   display: flex;
   gap: 1rem;
 }
 
-.nav search {
+.nav .search {
   flex-grow: 1;
   padding: 0;
   margin: 0;
@@ -142,8 +141,8 @@ a {
   gap: 1rem;
 }
 
-.nav a {
-  color: inherit;
+.nav .title {
+  margin-left: -1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -180,7 +179,6 @@ a {
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
-  font-family: 'Comfortaa', cursive;
 }
 
 .form input:focus {
@@ -188,7 +186,6 @@ a {
 }
 
 .form button {
-  font-family: 'Comfortaa', cursive;
   text-transform: uppercase;
   outline: 0;
   background: rgba(68, 112, 46, 0.739);
