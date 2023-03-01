@@ -102,7 +102,7 @@ a {
 
 /* Navbar Styling */
 .nav {
-  background-color: rgba(68, 112, 46, 0.739);
+  background-color: rgba(23, 8, 231, 0.739);
   color: aliceblue;
   display: flex;
   justify-content: space-between;
@@ -191,7 +191,7 @@ a {
   font-family: 'Comfortaa', cursive;
   text-transform: uppercase;
   outline: 0;
-  background: rgba(68, 112, 46, 0.739);
+  background: rgba(68, 1, 255, 0.739);
   width: 100%;
   border: 0;
   border-radius: 5px;
@@ -204,12 +204,12 @@ a {
 }
 
 .form button:active {
-  background: rgba(68, 112, 46, 0.739);
+  background: rgba(66, 79, 255, 0.739);
 }
 
 .form span {
   font-size: 40px;
-  color: rgba(68, 112, 46, 0.739);
+  color: rgba(8, 23, 235, 0.739);
   margin-bottom: 25px;
   display: block;
 }
