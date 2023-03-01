@@ -102,7 +102,7 @@ a {
 
 /* Navbar Styling */
 .nav {
-  background-color: #004AAD;
+  background-color: #004aad;
   color: aliceblue;
   display: flex;
   justify-content: space-between;
@@ -149,6 +149,42 @@ a {
   margin-left: -1rem;
 }
 
+/* Create Sets Page */
+.create-set {
+  margin-top: -2rem;
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #1e90ff;
+  color: #fff;
+  position: absolute;
+  right: 20px;
+}
+.flashcard-container {
+  max-width: 50rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  margin-top: 2rem;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.flashcard-question {
+  font-size: 24px;
+  margin-right: 20px;
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+}
+
+.flashcard-answer {
+  font-size: 24px;
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -156,7 +192,8 @@ a {
 }
 
 /* Login Styling */
-.login, .Register {
+.login,
+.Register {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
@@ -165,7 +202,7 @@ a {
 .form {
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 10px;
   max-width: 360px;
   margin: 0 auto 100px;
@@ -197,7 +234,7 @@ a {
   border: 0;
   border-radius: 5px;
   padding: 15px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
@@ -222,10 +259,13 @@ a {
   color: red;
 }
 
-.form input, select, textarea{
+.form input,
+select,
+textarea {
   color: #000000;
 }
 
-.form textarea:focus, input:focus {
+.form textarea:focus,
+input:focus {
   color: #000000;
 }
