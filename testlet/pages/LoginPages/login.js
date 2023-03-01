@@ -21,7 +21,7 @@ function Login() {
         }}
       >
         {({
-          values,
+          values,   
           errors,
           touched,
           handleChange,
@@ -59,8 +59,11 @@ function Login() {
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
+                <p><a href="/LoginPages/forgotpwd" style={{ color: 'blue' }}>Forgot Password</a>.</p>
+                <br></br>
                 <button type="submit">Login</button>
                 <p></p>
+                <br></br>
                 <p style={{ color: 'black' }}>No Account? Register <a href="/LoginPages/register" style={{ color: 'blue' }}>here</a>.</p>
               </form>
             </div>
