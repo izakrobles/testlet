@@ -102,7 +102,7 @@ a {
 
 /* Navbar Styling */
 .nav {
-  background-color: rgba(23, 8, 231, 0.739);
+  background-color: #004AAD;
   color: aliceblue;
   display: flex;
   justify-content: space-between;
@@ -111,6 +111,10 @@ a {
   padding: 0 1rem;
   height: fit-content;
   font-size: 2rem;
+}
+
+.nav .logo {
+  margin-top: 10px;
 }
 
 .nav .home {
