@@ -136,6 +136,14 @@ a {
   gap: 1rem;
 }
 
+.nav .search .box{
+  background-color: aliceblue;
+  border-radius: 50px;
+  text-align: center;
+  color: #000000;
+  font-size: 20px;
+}
+
 .nav ul {
   font-size: 1.5rem;
   padding: 0;
@@ -150,6 +158,22 @@ a {
 }
 
 /* Create Sets Page */
+.new-set{
+  justify-content: center;
+  display: flex;
+  padding: 1rem;
+  margin: auto;
+  font-size: 24px;
+}
+.new-set .title{
+  justify-content: space-between;
+  font-size: 24px;
+  background-color: rgb(14,4,44);
+  border: none;
+  color: white;
+  text-align: center;
+}
+
 .create-sets{
   max-width: 50rem;
   margin: auto;
@@ -167,14 +191,14 @@ a {
   background-color: white;
   color: #000000;
   font-size: 24px;
-  border: none;
+  border-radius: 10px;
   overflow: hidden;
 }
 .create-sets .answer{
   background-color: white;
   color: #000000;
   font-size: 24px;
-  border: none;
+  border-radius: 10px;
   overflow: hidden;
 }
 

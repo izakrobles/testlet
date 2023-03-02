@@ -19,15 +19,26 @@ function CreateSet() {
   const handleSetQuestion = (event) => {
     setQuestion(event.target.value);
   };
-
   const handleSetAnswer = (event) => {
     setAnswer(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleAddFlashcard();
+    }
   };
 
   return (
     <>
       <title>Create a Set</title>
-      <h1>Create New Set</h1>
+      <form className="new-set">
+          <label>Your Set Title:</label>
+          <input className="title"
+            type="text"
+          ></input>
+        </form>
       <div className="create-sets">
         <form>
           <label>Question:  </label>
@@ -36,6 +47,7 @@ function CreateSet() {
             className="question"
             value={question}
             onChange={handleSetQuestion}
+            onKeyDown={handleKeyDown}
           ></input>
         </form>
         <form>
@@ -45,6 +57,7 @@ function CreateSet() {
             className="answer"
             value={answer}
             onChange={handleSetAnswer}
+            onKeyDown={handleKeyDown}
           ></input>
         </form>
         </div>
