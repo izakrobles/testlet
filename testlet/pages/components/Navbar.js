@@ -14,11 +14,14 @@ function Navbar() {
         </div>
       </Link>
       <>
-        <search className="search" action="/send-data-here" method="post">
+        <form className="search" action="/send-data-here" method="post">
           <label htmlFor="setName">Search</label>
-          <input type="text" id="setName" name="setName" />
-          <button type="submit">Submit</button>
-        </search>
+          <input className="box" type="text" id="setName" name="setName" />
+          <Link className="search-icon" href="">
+            <Image className="submit" src="/search.png" width={30} height={30}></Image>
+          </Link>
+        </form>
+        
       </>
       <ul>
         <li>

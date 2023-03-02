@@ -43,8 +43,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 16, 4, 44;
+    --background-end-rgb: 16, 4, 44;
 
     --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
@@ -94,11 +94,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
+
 
 /* Navbar Styling */
 .nav {
@@ -136,6 +136,14 @@ a {
   gap: 1rem;
 }
 
+.nav .search .box{
+  background-color: aliceblue;
+  border-radius: 50px;
+  text-align: center;
+  color: #000000;
+  font-size: 20px;
+}
+
 .nav ul {
   font-size: 1.5rem;
   padding: 0;
@@ -150,21 +158,69 @@ a {
 }
 
 /* Create Sets Page */
-.create-set {
-  margin-top: -2rem;
+.new-set{
+  justify-content: center;
+  display: flex;
+  padding: 1rem;
+  margin: auto;
   font-size: 24px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #1e90ff;
-  color: #fff;
-  position: absolute;
-  right: 20px;
 }
-.flashcard-container {
+.new-set .title{
+  justify-content: space-between;
+  font-size: 24px;
+  background-color: rgb(14,4,44);
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+.create-sets{
   max-width: 50rem;
   margin: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  padding: 30px;
+  border-radius: 10px;
+  justify-content: space-between;
+  font-size: 24px;
+}
+.create-sets .question{
+  background-color: white;
+  color: #000000;
+  font-size: 24px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.create-sets .answer{
+  background-color: white;
+  color: #000000;
+  font-size: 24px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.create-set {
+  margin-top: -7rem;
+  margin-right: 13rem;
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #004aad;
+  color: #fff;
+  position: absolute;
+  right: 20px;
+  padding: 40px;
+}
+
+
+.flashcard-container {
+  max-width: 50rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   color: black;
@@ -176,12 +232,13 @@ a {
 .flashcard-question {
   font-size: 24px;
   margin-right: 20px;
-  border-right: 1px solid #ccc;
   padding-right: 20px;
 }
 
 .flashcard-answer {
   font-size: 24px;
+  border-left: 2px solid #ccc;
+  padding-left: 7px;
 }
 
 
