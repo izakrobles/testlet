@@ -5,8 +5,18 @@ function CreateSet() {
   const [flashcards, setFlashcards] = useState([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [title, setTitle] = useState("");
 
   const handleAddFlashcard = () => {
+    if (!answer | !question) {
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 1750);
+      return;
+    }
+
     const newFlashcards = [
       ...flashcards,
       { question: question, answer: answer },
@@ -14,6 +24,12 @@ function CreateSet() {
     setFlashcards(newFlashcards);
     setAnswer("");
     setQuestion("");
+  };
+
+  const handleDeleteFlashcard = (index) => {
+    const newFlashcards = [...flashcards];
+    newFlashcards.splice(index, 1);
+    setFlashcards(newFlashcards);
   };
 
   const handleSetQuestion = (event) => {
@@ -30,18 +46,30 @@ function CreateSet() {
     }
   };
 
+  const handleSaveSetButton = () => {
+    event.preventDefault();
+    const newTitle = document.getElementsByName("title").value;
+    setTitle(newTitle);
+  };
+
   return (
     <>
       <title>Create a Set</title>
+      {showPopup && (
+        <div className="popup" onClick={() => setShowPopup(false)}>
+          Make sure there is content in both boxes.
+        </div>
+      )}
       <form className="new-set">
-          <label>Your Set Title:</label>
-          <input className="title"
-            type="text"
-          ></input>
-        </form>
+        <label>Your Set Title:</label>
+        <input className="title" type="text" name="title"></input>
+        <button className="save-button" onClick={handleSaveSetButton}>
+          Save New Set
+        </button>
+      </form>
       <div className="create-sets">
         <form>
-          <label>Question:  </label>
+          <label>Question: </label>
           <input
             type="text"
             className="question"
@@ -51,7 +79,7 @@ function CreateSet() {
           ></input>
         </form>
         <form>
-          <label>Answer:  </label>
+          <label>Answer: </label>
           <input
             type="text"
             className="answer"
@@ -60,17 +88,19 @@ function CreateSet() {
             onKeyDown={handleKeyDown}
           ></input>
         </form>
-        </div>
-        <button className="create-set" onClick={handleAddFlashcard}>
-          Flashcard +
+        <button className="create-set-button" onClick={handleAddFlashcard}>
+          +
         </button>
+      </div>
 
       {flashcards.map((flashcard, index) => (
-        <Flashcard
+        <div
+          className="flashcard"
           key={index}
-          question={flashcard.question}
-          answer={flashcard.answer}
-        />
+          onClick={() => handleDeleteFlashcard(index)}
+        >
+          <Flashcard question={flashcard.question} answer={flashcard.answer} />
+        </div>
       ))}
     </>
   );
