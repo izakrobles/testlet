@@ -99,7 +99,6 @@ a {
   text-decoration: none;
 }
 
-
 /* Navbar Styling */
 .nav {
   background-color: #004aad;
@@ -136,7 +135,7 @@ a {
   gap: 1rem;
 }
 
-.nav .search .box{
+.nav .search .box {
   background-color: aliceblue;
   border-radius: 50px;
   text-align: center;
@@ -158,23 +157,32 @@ a {
 }
 
 /* Create Sets Page */
-.new-set{
+.new-set {
   justify-content: center;
   display: flex;
   padding: 1rem;
   margin: auto;
   font-size: 24px;
 }
-.new-set .title{
+.new-set .title {
   justify-content: space-between;
   font-size: 24px;
-  background-color: rgb(14,4,44);
-  border: none;
+  background-color: rgba(0, 0, 0, 0%);
+  border-radius: 10px;
   color: white;
   text-align: center;
+  border: none;
+  outline: none;
 }
-
-.create-sets{
+.new-set .save-button {
+  background-color: #004aad;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
+.create-sets {
+  position: relative;
   max-width: 50rem;
   margin: auto;
   display: flex;
@@ -184,37 +192,48 @@ a {
   color: black;
   padding: 30px;
   border-radius: 10px;
-  justify-content: space-between;
+  justify-content: right;
   font-size: 24px;
-}
-.create-sets .question{
-  background-color: white;
-  color: #000000;
-  font-size: 24px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.create-sets .answer{
-  background-color: white;
-  color: #000000;
-  font-size: 24px;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
-.create-set {
-  margin-top: -7rem;
-  margin-right: 13rem;
+.create-set-button {
+  margin-right: -1rem;
+  position: absolute;
   font-size: 24px;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 25px;
+  border-radius: 200px;
   background-color: #004aad;
   color: #fff;
-  position: absolute;
-  right: 20px;
-  padding: 40px;
 }
 
+.create-sets .question {
+  background-color: white;
+  color: #000000;
+  font-size: 24px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.create-sets .answer {
+  background-color: white;
+  color: #000000;
+  font-size: 24px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 2rem;
+}
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -200%);
+  padding: 40px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
 
 .flashcard-container {
   max-width: 50rem;
@@ -240,7 +259,6 @@ a {
   border-left: 2px solid #ccc;
   padding-left: 7px;
 }
-
 
 @media (prefers-color-scheme: dark) {
   html {
