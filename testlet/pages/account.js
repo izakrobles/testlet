@@ -1,29 +1,54 @@
-function Account() {
+import Link from "next/link";
+
+function account() {
   return (
     <>
-      <body>
-        <header>
-        <div class="user-profile">
-                  <h1><img align="right" src="https://datacenterresources.com/wp-content/uploads/2017/06/missing-profile-photo.png" alt=""/>Username<br/>First Last</h1>
-                  <p>&nbsp;</p>
-                  <p>Achievements Study Sets Expert Solutions Courses Classes</p>
-                  <p>&nbsp;</p>
-            </div>
-            <nav>
-                    <ul>
-                        <li><a href="#Recent-Activity"><b>Recent Activity</b></a></li>
-                        <li><a href="#Study"><b>Study</b></a></li>
-                        <li><a href="#Streaks"><b>Streaks</b></a></li>
-                        <li><a href="#Lifttime"><b>Liftime</b></a></li>
-                        <p>&nbsp;</p>
-                        <p>&nbsp;</p>
-                        <li><a href="http://localhost:3000/LoginPages/forgotpwd"><b>Change Username</b></a></li>
-                        <li><a href="http://localhost:3000/LoginPages/forgotpwd"><b>Change Password</b></a></li>
-                      </ul>
-          </nav>
-        </header>
-      </body>
+      <div class="user-profile">
+        <h1>
+          <img
+            align="right"
+            src="/nopfp.png"
+            alt=""
+          />
+          Username
+          <br />
+          First Last
+        </h1>
+        <p>&nbsp;</p>
+        <p>Achievements Study Sets Expert Solutions Courses Classes</p>
+        <p>&nbsp;</p>
+      </div>
+
+      <nav>
+        <ul>
+          <li>
+            <Link href="#Recent-activity">Recent activity</Link>
+          </li>
+          <li>
+            <Link href="#Study">Study</Link>
+          </li>
+          <li>
+            <Link href="#Streaks">Streaks</Link>
+          </li>
+          <li>
+            <Link href="#Lifttime">Liftime</Link>
+          </li>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <li>
+            <Link href="http://locLinklhost:3000/LoginPages/forgotpwd">
+              Change UsernLinkme
+            </Link>
+          </li>
+          <li>
+            <Link href="http://locLinklhost:3000/LoginPages/forgotpwd">
+              Change PLinkssword
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </>
   );
 }
-export default Account;
+
+export default account;
