@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.1.6",
+    "next/font": "^13.1.6",
     "firebase": "^9.17.2",
     "formik": "^2.2.9",
     "next": "^13.2.3",
