@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Flashcard from "./components/Flashcard";
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { collection, doc, updateDoc, addDoc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/clientApp";
 
 function CreateSet() {
@@ -11,7 +10,7 @@ function CreateSet() {
   const [showPopup, setShowPopup] = useState(false);
   const [title, setTitle] = useState("");
 
-  const user = "irobles";
+  const user = "testletAdmin";
 
   const handleAddFlashcard = () => {
     if (!answer | !question) {
@@ -57,10 +56,24 @@ function CreateSet() {
     for (const flashcard of flashcards) {
       await addDoc(collectionRef, {
         question: flashcard.question,
-        answer: flashcard.answer
+        answer: flashcard.answer,
       });
     }
-  };  
+    
+    const docRef = doc(db, 'sets', user);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+      const userData = docSnapshot.data();
+      const updatedSets = [...userData.UserSets, title];
+      await updateDoc(docRef, { UserSets: updatedSets });
+    } else{
+      await setDoc(docRef, {UserSets: [title]})
+    }
+    setAnswer("");
+    setQuestion("");
+    setFlashcards([]);
+    setTitle("");
+  };
 
   return (
     <>

@@ -1,13 +1,19 @@
 import React from "react";
-import Flashcard from "./components/Flashcard";
-
-import { db } from "@/firebase/clientApp";
+import { useRouter } from "next/router";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { db } from "@/firebase/clientApp";
+import Flashcard from "./components/Flashcard";
 
-function ViewSets() {
+function ViewSet() {
+  const router = useRouter();
+  const { set } = router.query;
+  const user = "testletAdmin";
+
+  const decodedSet = decodeURIComponent(set);
+
   const [flashcards, loading, error] = useCollection(
-    collection(db, "flashcardSet_00")
+    collection(db, "sets", user, decodedSet)
   );
 
   if (error) {
@@ -21,8 +27,8 @@ function ViewSets() {
   console.log(flashcards);
   return (
     <>
-      <title>Your Sets</title>
-
+      <title>{decodedSet}</title>
+      <h1>{decodedSet}</h1>
       {flashcards && (
         <>
           {flashcards.docs.map((flashcard, index) => (
@@ -39,4 +45,4 @@ function ViewSets() {
   );
 }
 
-export default ViewSets;
+export default ViewSet;
