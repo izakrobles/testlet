@@ -344,3 +344,7 @@ textarea {
 input:focus {
   color: #000000;
 }
+
+.feature-title {
+  color: black;
+}
