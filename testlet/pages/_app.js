@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import Navbar from "./components/Navbar";
-import { Montserrat  } from "@next/font/google";
+import { Montserrat } from "@next/font/google";
 
-const montserrat = Montserrat ({
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: "600",
 });
