@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Flashcard from "./components/Flashcard";
+import { collection, doc, updateDoc, addDoc, getDoc } from "firebase/firestore";
+import { db } from "@/firebase/clientApp";
 
 function CreateSet() {
   const [flashcards, setFlashcards] = useState([]);
@@ -7,6 +9,8 @@ function CreateSet() {
   const [answer, setAnswer] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [title, setTitle] = useState("");
+
+  const user = "testletAdmin";
 
   const handleAddFlashcard = () => {
     if (!answer | !question) {
@@ -46,10 +50,29 @@ function CreateSet() {
     }
   };
 
-  const handleSaveSetButton = () => {
+  const handleSaveSetButton = async () => {
     event.preventDefault();
-    const newTitle = document.getElementsByName("title").value;
-    setTitle(newTitle);
+    const collectionRef = collection(db, "sets", user, title);
+    for (const flashcard of flashcards) {
+      await addDoc(collectionRef, {
+        question: flashcard.question,
+        answer: flashcard.answer,
+      });
+    }
+    
+    const docRef = doc(db, 'sets', user);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+      const userData = docSnapshot.data();
+      const updatedSets = [...userData.UserSets, title];
+      await updateDoc(docRef, { UserSets: updatedSets });
+    } else{
+      await setDoc(docRef, {UserSets: [title]})
+    }
+    setAnswer("");
+    setQuestion("");
+    setFlashcards([]);
+    setTitle("");
   };
 
   return (
@@ -62,7 +85,7 @@ function CreateSet() {
       )}
       <form className="new-set">
         <label>Your Set Title:</label>
-        <input className="title" type="text" name="title"></input>
+        <input className="title" type="text" name="title" onChange={(e) => setTitle(e.target.value)} ></input>
         <button className="save-button" onClick={handleSaveSetButton}>
           Save New Set
         </button>
