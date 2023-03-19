@@ -9,10 +9,6 @@ const Home = () => {
         <title>Testlet - Home</title>
         <link
           rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        />
-        <link
-          rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/css/bootstrap.min.css"
         />
         <link rel="stylesheet" href="globals.css"></link>
@@ -47,7 +43,7 @@ const Home = () => {
             <Col md={4}>
               <div className="text-center my-3">
                 <i className="bi bi-bookmark-heart h2 text-primary"></i>
-                <h3 class="feature-title">Save Time</h3>
+                <h3 className="feature-title">Save Time</h3>
                 <p className="text-muted">
                   With Testlet, you can easily create flash card sets, saving
                   you time and helping you stay organized.
@@ -57,7 +53,7 @@ const Home = () => {
             <Col md={4}>
               <div className="text-center my-3">
                 <i className="bi bi-broadcast h2 text-primary"></i>
-                <h3 class="feature-title">Stored Remotely</h3>
+                <h3 className="feature-title">Stored Remotely</h3>
                 <p className="text-muted">
                   Testlet allows you to create and access your flash card sets
                   anywhere at any time!
@@ -67,7 +63,7 @@ const Home = () => {
             <Col md={4}>
               <div className="text-center my-3">
                 <i className="bi bi-shield-lock h2 text-primary"></i>
-                <h3 class="feature-title">Secure</h3>
+                <h3 className="feature-title">Secure</h3>
                 <p className="text-muted">
                   We take security seriously at Testlet, so you can be confident
                   that your data is safe and secure. <br></br>
