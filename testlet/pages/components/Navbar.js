@@ -1,8 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { auth } from "../../firebase/clientApp"
+
 
 function Navbar() {
+  const local = auth.currentUser;
   return (
     <nav className="nav">
       <Link href="/">
@@ -26,7 +29,7 @@ function Navbar() {
       <ul>
         <li>
           <>
-            <Link href="/personalSets">My Sets</Link>
+            <Link href="/personalSets">{local != null && "Your Sets"}</Link>
           </>
         </li>
         <li>
@@ -36,7 +39,7 @@ function Navbar() {
         </li>
         <li>
           <>
-            <Link href="/account">Account</Link>
+            <Link href="/account">{local != null && local.displayName}</Link>
           </>
         </li>
         <li>
@@ -46,7 +49,7 @@ function Navbar() {
         </li>
         <li>
           <>
-            <Link href="/LoginPages/login">Login</Link>
+            <Link href="/LoginPages/loginOptions">{local == null && "Login"}</Link>
           </>
         </li>
       </ul>

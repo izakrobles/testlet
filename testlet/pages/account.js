@@ -1,18 +1,19 @@
 import Link from "next/link";
+import { auth } from "../firebase/clientApp"
 
 function account() {
+  const local = auth.currentUser;
   return (
     <>
-      <div class="user-profile">
+      <div className="user-profile">
         <h1>
           <img
             align="right"
             src="/nopfp.png"
             alt=""
           />
-          Username
+          {local.displayName}
           <br />
-          First Last
         </h1>
         <p>&nbsp;</p>
         <p>Achievements Study Sets Expert Solutions Courses Classes</p>
@@ -36,13 +37,13 @@ function account() {
           <p>&nbsp;</p>
           <p>&nbsp;</p>
           <li>
-            <Link href="http://locLinklhost:3000/LoginPages/forgotpwd">
-              Change UsernLinkme
+            <Link href="../LoginPages/forgotpwd">
+              Change Username
             </Link>
           </li>
           <li>
-            <Link href="http://locLinklhost:3000/LoginPages/forgotpwd">
-              Change PLinkssword
+            <Link href="../LoginPages/forgotpwd">
+              Change Password
             </Link>
           </li>
         </ul>
