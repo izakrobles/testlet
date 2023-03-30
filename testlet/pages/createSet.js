@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Flashcard from "./components/Flashcard";
-import { collection, doc, updateDoc, addDoc, getDoc } from "firebase/firestore";
-import { db } from "@/firebase/clientApp";
+import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
+import { db, auth } from "@/firebase/clientApp";
 
 function CreateSet() {
   const [flashcards, setFlashcards] = useState([]);
@@ -10,7 +10,7 @@ function CreateSet() {
   const [showPopup, setShowPopup] = useState(false);
   const [title, setTitle] = useState("");
 
-  const user = "testletAdmin";
+  const user = auth.currentUser.displayName;
 
   const handleAddFlashcard = () => {
     if (!answer | !question) {

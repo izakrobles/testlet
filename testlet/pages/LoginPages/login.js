@@ -1,5 +1,8 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/clientApp"
+import { GoogleAuthProvider, EmailAuthCredential } from "firebase/auth";
 
 const schema = Yup.object().shape({
   email: Yup.string()

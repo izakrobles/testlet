@@ -2,13 +2,13 @@ import React from "react";
 import { useRouter } from "next/router";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "@/firebase/clientApp";
+import { db,auth } from "@/firebase/clientApp";
 import Flashcard from "./components/Flashcard";
 
 function ViewSet() {
   const router = useRouter();
   const { set } = router.query;
-  const user = "testletAdmin";
+  const user = auth.currentUser.displayName;
 
   const decodedSet = decodeURIComponent(set);
 
