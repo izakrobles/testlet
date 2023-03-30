@@ -3,7 +3,7 @@ import Link from "next/link";
 function account() {
   return (
     <>
-      <div class="user-profile">
+      <div className="user-profile">
         <h1>
           <img
             align="right"

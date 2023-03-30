@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <nav className="nav">
       <Link href="/">
-      <Image alt="NavLogo" className="logo" src="/testlet.png" width={55} height={55} ></Image>       
+      <Image className="logo" src="/testlet.png" width={55} height={55} ></Image>       
       </Link>
       <Link href="/">
         <div className="home">
@@ -18,7 +18,7 @@ function Navbar() {
           <label htmlFor="setName">Search</label>
           <input className="box" type="text" id="setName" name="setName" />
           <Link className="search-icon" href="">
-            <Image alt="searchIcon" className="submit" src="/search.png" width={30} height={30}></Image>
+            <Image className="submit" src="/search.png" width={30} height={30}></Image>
           </Link>
         </form>
         
