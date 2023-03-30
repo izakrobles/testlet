@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { db } from "@/firebase/clientApp";
+import { db,auth } from "@/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 
 function PersonalSets() {
   const [sets, setSets] = useState([]);
-  const user = "testletAdmin";
+  const user = auth.currentUser.displayName;
 
   const handleGetSets = async () => {
     const documentRef = doc(db, 'sets', user);
