@@ -7,11 +7,6 @@ const Home = () => {
     <div>
       <Head>
         <title>Testlet - Home</title>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/css/bootstrap.min.css"
-        />
-        <link rel="stylesheet" href="globals.css"></link>
       </Head>
 
       <Container className="my-5">

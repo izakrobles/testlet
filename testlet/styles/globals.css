@@ -141,7 +141,6 @@ a {
   text-align: center;
   color: #000000;
   font-size: 20px;
-  flex-grow: 1;
 }
 
 .nav ul {
@@ -346,6 +345,18 @@ input:focus {
   color: #000000;
 }
 
+/* Home Page */
+
 .feature-title {
   color: black;
 }
+
+/* Footer component */
+/*
+.foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+*/
