@@ -26,12 +26,12 @@ function Account() {
       <div>
         <Container className="my-5">
           <Row>
-            <Col md={6}>
-              <img src="/nopfp.png" />
+            <Col md={2}>
+              <img src="/nopfp.png" className="profile-pic" />
             </Col>
             <Col md={6}>
-              <h1>Welcome to your Testlet account!</h1>
-              <p className="lead my-4">Here you can view and edit your account information, manage your study sets, and more!</p>
+              <h2>JDough1</h2>
+              <p>Jog Dough</p>
             </Col>
           </Row>
         </Container>
