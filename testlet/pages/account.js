@@ -27,17 +27,14 @@ function Account() {
         <Container className="my-5">
           <Row>
             <Col md={6}>
-              <h1>Welcome to your Testlet account!</h1>
-              <p className="lead my-4">
-                Here you can view and edit your account information, manage your study sets, and more!
-              </p>
+              <img src="/nopfp.png" />
             </Col>
             <Col md={6}>
-              <img src="/nopfp.png" />
+              <h1>Welcome to your Testlet account!</h1>
+              <p className="lead my-4">Here you can view and edit your account information, manage your study sets, and more!</p>
             </Col>
           </Row>
         </Container>
-
         <Container>
           <Nav class ="nav-account" tabs rounded>
             <NavItem>
