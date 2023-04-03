@@ -44,7 +44,7 @@ function Account() {
             </NavItem>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { toggle('2'); }}>
-                Study Sets
+                Recent Sets
               </NavLink>
             </NavItem>
             <NavItem>
@@ -76,9 +76,11 @@ function Account() {
               </p>
             </TabPane>
             <TabPane tabId="2">
-              <h4>Study Sets</h4>
-              <p>Most Recent study set</p>
-              <p>Study sets</p>
+              <h4>Recent Sets</h4>
+              <p>Most Recent Study set</p>
+              <p>2nd Most Recent Study Set</p>
+              <p>3rd Most Recent Study Set</p>
+              <p>4th Most Recent Study Set</p>
             </TabPane>
             <TabPane tabId="3">
               <h4>Streak: 400 Days</h4>
