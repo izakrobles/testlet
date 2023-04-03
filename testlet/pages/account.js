@@ -1,55 +1,106 @@
 import Link from "next/link";
-import { auth } from "../firebase/clientApp"
+import { auth } from "../firebase/clientApp";
+import React, { useState } from "react";
+import Head from "next/head";
+import { Container, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane, Button } from "reactstrap";
+import classnames from "classnames";
 
-function account() {
+function Account() {
+  const [activeTab, setActiveTab] = useState("1");
+  const toggle = (tab) => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.log("Error signing out: ", error);
+    }
+  };
+
   const local = auth.currentUser;
+  
   return (
     <>
-      <div className="user-profile">
-        <h1>
-          <img
-            align="right"
-            src="/nopfp.png"
-            alt=""
-          />
-          {local.displayName}
-          <br />
-        </h1>
-        <p>&nbsp;</p>
-        <p>Achievements Study Sets Expert Solutions Courses Classes</p>
-        <p>&nbsp;</p>
-      </div>
+      <div>
+        <Container className="my-5">
+          <Row>
+            <Col md={6}>
+              <h1>Welcome to your Testlet account!</h1>
+              <p className="lead my-4">
+                Here you can view and edit your account information, manage your study sets, and more!
+              </p>
+            </Col>
+            <Col md={6}>
+              <img src="/nopfp.png" />
+            </Col>
+          </Row>
+        </Container>
 
-      <nav>
-        <ul>
-          <li>
-            <Link href="#Recent-activity">Recent activity</Link>
-          </li>
-          <li>
-            <Link href="#Study">Study</Link>
-          </li>
-          <li>
-            <Link href="#Streaks">Streaks</Link>
-          </li>
-          <li>
-            <Link href="#Lifttime">Liftime</Link>
-          </li>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <li>
-            <Link href="../LoginPages/forgotpwd">
-              Change Username
-            </Link>
-          </li>
-          <li>
-            <Link href="../LoginPages/forgotpwd">
-              Change Password
-            </Link>
-          </li>
-        </ul>
-      </nav>
+        <Container>
+          <Nav class ="nav-account" tabs rounded>
+            <NavItem>
+              <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { toggle('1'); }}>
+                Account Information
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { toggle('2'); }}>
+                Study Sets
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { toggle('3'); }}>
+                Stats
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { toggle('4'); }}>
+                Settings
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <Button onClick={handleLogout}>Logout</Button>
+            </NavItem>
+          </Nav>
+
+          <TabContent activeTab={activeTab}>
+            <TabPane tabId="1">
+              <h4>Account Information</h4>
+              <p>
+                Name: Jog Dough
+              </p>
+              <p>
+                Email: Jog Dough Email
+              </p>
+              <p>
+                Account Created: Day-Month-Year
+              </p>
+            </TabPane>
+            <TabPane tabId="2">
+              <h4>Study Sets</h4>
+              <p>Most Recent study set</p>
+              <p>Study sets</p>
+            </TabPane>
+            <TabPane tabId="3">
+              <h4>Streak: 400 Days</h4>
+              <p>List of Achievements</p>
+            </TabPane>
+            <TabPane tabId="4">
+              <h4>Settings</h4>
+              <p>Privacy = None</p>
+              <p>User Data = Sold</p>
+            </TabPane>
+          </TabContent>
+        </Container>
+
+        <footer className="foot bg-primary text-light text-center py-3">
+          <p className="mb-0">&copy; 2023 Testlet. All rights reserved.</p>
+        </footer>
+      </div>
     </>
   );
 }
 
-export default account;
+export default Account;
