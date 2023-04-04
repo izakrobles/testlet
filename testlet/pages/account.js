@@ -2,10 +2,11 @@ import Link from "next/link";
 import { auth } from "../firebase/clientApp";
 import React, { useState } from "react";
 import Head from "next/head";
-import { Container, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane, Button } from "reactstrap";
+import { Container, Row, Col, Nav, TabContent, TabPane, Button } from "react-bootstrap";
 import classnames from "classnames";
+import { Tab, Tabs } from 'react-bootstrap';
 
-function Account() {
+const Account = () => {
   const [activeTab, setActiveTab] = useState("1");
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -20,7 +21,7 @@ function Account() {
   };
 
   const local = auth.currentUser;
-  
+
   return (
     <>
       <div>
@@ -36,62 +37,32 @@ function Account() {
           </Row>
         </Container>
         <Container>
-          <Nav class ="nav-account" tabs rounded>
-            <NavItem>
-              <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { toggle('1'); }}>
-                Account Information
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { toggle('2'); }}>
-                Recent Sets
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { toggle('3'); }}>
-                Stats
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { toggle('4'); }}>
-                Settings
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <Button onClick={handleLogout}>Logout</Button>
-            </NavItem>
-          </Nav>
-
-          <TabContent activeTab={activeTab}>
-            <TabPane tabId="1">
+          <Tabs className="account-tab" activeKey={activeTab} onSelect={(selectedTab) => toggle(selectedTab)}>
+            <Tab eventKey="1" title="Account Information">
               <h4>Account Information</h4>
-              <p>
-                Name: Jog Dough
-              </p>
-              <p>
-                Email: Jog Dough Email
-              </p>
-              <p>
-                Account Created: Day-Month-Year
-              </p>
-            </TabPane>
-            <TabPane tabId="2">
+              <p>Name: Jog Dough</p>
+              <p>Email: Jog Dough Email</p>
+              <p>Account Created: Day-Month-Year</p>
+            </Tab>
+            <Tab eventKey="2" title="Recent Sets">
               <h4>Recent Sets</h4>
               <p>Most Recent Study set</p>
               <p>2nd Most Recent Study Set</p>
               <p>3rd Most Recent Study Set</p>
               <p>4th Most Recent Study Set</p>
-            </TabPane>
-            <TabPane tabId="3">
+            </Tab>
+            <Tab eventKey="3" title="Stats">
               <h4>Streak: 400 Days</h4>
               <p>List of Achievements</p>
-            </TabPane>
-            <TabPane tabId="4">
+            </Tab>
+            <Tab eventKey="4" title="Settings">
               <h4>Settings</h4>
               <p>Privacy = None</p>
               <p>User Data = Sold</p>
-            </TabPane>
-          </TabContent>
+            </Tab>
+          </Tabs>
+
+          <Button onClick={handleLogout}>Logout</Button>
         </Container>
 
         <footer className="foot bg-primary text-light text-center py-3">
