@@ -370,6 +370,7 @@ input:focus {
 }
 .account-tab .nav-link.active {
   border: none;
+  color: white;
   background-color: rgba(0, 0, 0, 0);
   border-bottom-color: white;
   border-bottom: 2px solid;
