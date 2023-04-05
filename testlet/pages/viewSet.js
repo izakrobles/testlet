@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db,auth } from "@/firebase/clientApp";
-import Flashcard from "./components/Flashcard";
+import Flashcard from "./components/flashcard";
 
 function ViewSet() {
   const router = useRouter();
