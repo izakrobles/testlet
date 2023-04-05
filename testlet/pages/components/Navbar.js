@@ -1,15 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { auth } from "../../firebase/clientApp"
-
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "@/firebase/clientApp";
 
 function Navbar() {
-  const local = auth.currentUser;
+  const [user] = useAuthState(auth);
+
   return (
     <nav className="nav">
       <Link href="/">
-      <Image className="logo" src="/testlet.png" width={55} height={55} ></Image>       
+        <Image className="logo" src="/testlet.png" width={55} height={55} />
       </Link>
       <Link href="/">
         <div className="home">
@@ -21,25 +22,24 @@ function Navbar() {
           <label htmlFor="setName">Search</label>
           <input className="box" type="text" id="setName" name="setName" />
           <Link className="search-icon" href="">
-            <Image className="submit" src="/search.png" width={30} height={30}></Image>
+            <Image className="submit" src="/search.png" width={30} height={30} />
           </Link>
         </form>
-        
       </>
       <ul>
         <li>
           <>
-            <Link href="/personalSets">{local != null && "Your Sets"}</Link>
+            <Link href="/personalSets">{user && "Your Sets"}</Link>
           </>
         </li>
         <li>
           <>
-            <Link href="/createSet">Create Set</Link>
+            <Link href="/createSet">{user && "Create Set"}</Link>
           </>
         </li>
         <li>
           <>
-            <Link href="/account">{local != null && local.displayName}</Link>
+            <Link href="/account">{user?.displayName}</Link>
           </>
         </li>
         <li>
@@ -49,7 +49,7 @@ function Navbar() {
         </li>
         <li>
           <>
-            <Link href="/LoginPages/loginOptions">{local == null && "Login"}</Link>
+            <Link href="/LoginPages/loginOptions">{!user && "Login"}</Link>
           </>
         </li>
       </ul>
