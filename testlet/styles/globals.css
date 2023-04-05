@@ -99,6 +99,10 @@ a {
   text-decoration: none;
 }
 
+main {
+  min-height: 100vh;
+}
+
 /* Navbar Styling */
 .nav {
   background-color: #004aad;

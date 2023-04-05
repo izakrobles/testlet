@@ -1,17 +1,10 @@
 import "@/styles/globals.css";
-import Navbar from "./components/Navbar";
-import { Montserrat } from "next/font/google";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: "600",
-});
+import Layout from "./components/layout";
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={montserrat.className}>
-      <Navbar />
+    <Layout>
       <Component {...pageProps} />
-    </main>
+    </Layout>
   );
 }
