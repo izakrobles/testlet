@@ -262,6 +262,35 @@ a {
   }
 }
 
+.FlipCard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.FlipCard-post {
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10%;
+  align-items: center;
+  height: 300px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.FlipCard-post h1 {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+
 /* Login Styling */
 .login,
 .Register {
