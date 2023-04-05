@@ -351,6 +351,42 @@ input:focus {
   color: black;
 }
 
+/* account page stuff */
+.account-tab {
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 2px;
+  height: fit-content;
+  font-size: 1rem;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.account-tab .nav-link.active {
+  border: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom-color: white;
+  border-bottom: 2px solid;
+}
+
+
+/* Set the background color of the tab content to match the page background
+.tab-content {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+*/
+
+
+
+
 /* Footer component */
 /*
 .foot {
