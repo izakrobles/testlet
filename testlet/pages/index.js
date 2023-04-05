@@ -23,11 +23,10 @@ const Home = () => {
             </a>
           </Col>
           <Col md={6}>
-            <img
-              src="large-alt-logo.png"
-              className="alt logo"
-              alt="Testlet alt Logo"
-            />
+          <video controls={false} muted autoPlay loop width={"100%"} height={"100%"}>
+            <source src="/stockA.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           </Col>
         </Row>
       </Container>
@@ -75,11 +74,10 @@ const Home = () => {
       <Container className="my-5">
         <Row>
           <Col md={6}>
-            <img
-              src="/images/home-features.png"
-              className="img-fluid"
-              alt="Testlet Features"
-            />
+            <video controls={false} muted autoPlay loop width={"100%"} height={"100%"}>
+              <source src="/stockB.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </Col>
           <Col md={6}>
             <h2>Features</h2>
