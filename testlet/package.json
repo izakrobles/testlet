@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^9.17.2",
+    "firebase": "^9.19.1",
     "formik": "^2.2.9",
     "next": "^13.2.3",
     "react": "^18.2.0",

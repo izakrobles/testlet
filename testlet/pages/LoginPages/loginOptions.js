@@ -2,7 +2,7 @@ import { React, useState, useRef } from "react";
 import { auth } from "../../firebase/clientApp"
 import { GoogleAuthProvider, EmailAuthCredential } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth, signInWithRedirect } from "firebase/auth";
+import { getAuth, signInWithRedirect, signInWithEmailAndPassword } from "firebase/auth";
 
 const google = new GoogleAuthProvider();
 const pasUser = getAuth();
@@ -17,29 +17,39 @@ function LoginOptions() {
     const formsRef = useRef(null);
     const pwShowHideRef = useRef(null);
     const linksRef = useRef(null);
-
+  
     const handleShowHideClick = () => {
-        const pwFields = pwShowHideRef.current.parentElement.parentElement.querySelectorAll('.password');
+        const pwFields = document.querySelectorAll('.password');
         pwFields.forEach((password) => {
-        if (password.type === 'password') {
+          if (password.type === 'password') {
             password.type = 'text';
-            pwShowHideRef.current.classList.replace('bx-hide', 'bx-show');
-            return;
-        }
-        password.type = 'password';
-        pwShowHideRef.current.classList.replace('bx-show', 'bx-hide');
+            pwShowHideRef.current.classList.remove('bx-hide');
+            pwShowHideRef.current.classList.add('bx-show');
+          } else {
+            password.type = 'password';
+            pwShowHideRef.current.classList.remove('bx-show');
+            pwShowHideRef.current.classList.add('bx-hide');
+          }
         });
-    };
+      };
 
-    const handleLinkClick = (e) => {
+    const handleForgotPwdLink = (e) => {
         e.preventDefault();
-        if (formsRef.current !== null) {
-            const registrationForm = formsRef.current.querySelector('.signup');
-            registrationForm.classList.toggle('show-signup');
+        const container = document.querySelector('.container');
+        if (container) {
+          container.classList.toggle('show-forgotpwd');
+        }
+    };  
+
+    const handleRegisterLink = (e) => {
+        e.preventDefault();
+        const container = document.querySelector('.container');
+        if (container) {
+          container.classList.toggle('show-signup');
         }
     };
 
-      const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
         await signInWithEmailAndPassword(auth, email, password); // updated this line
@@ -47,6 +57,11 @@ function LoginOptions() {
         console.log(error.message);
         }
     };
+
+    function changeText() {
+        const recoveryText = document.querySelector('.recovery-text');
+        recoveryText.textContent = "We won't send you anything. You lost your account.";
+    }
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -70,7 +85,7 @@ function LoginOptions() {
             </head>
 
             <body class ="my-login">
-                <section class="container forms">
+                <section id="forms-section" class="container forms">
                     <div class="form login">
                         <div class="form-content">
                             <header class="form-header">Login</header>
@@ -85,7 +100,7 @@ function LoginOptions() {
                                 </div>
 
                                 <div class="form-link">
-                                    <a href="#" class="forgot-pwd">Forgot Password?</a>
+                                    <a href="#" onClick={handleForgotPwdLink}>Forgot Password?</a>
                                 </div>
 
                                 <div class="field button-field">
@@ -93,7 +108,7 @@ function LoginOptions() {
                                 </div>
 
                                 <div class="form-link">
-                                    <span> Don't have an account?</span><a href="#" class="link signup-link" ref={linksRef} onClick={handleLinkClick}> Register Here</a>
+                                    <span> Don't have an account?</span><a href="#" onClick={handleRegisterLink}> Register Here</a>
                                 </div>
 
                             </form>
@@ -132,7 +147,7 @@ function LoginOptions() {
                                 </div>
 
                                 <div class="form-link">
-                                    <span> Already have an account?</span><a href="#" class="link login-link" ref={linksRef} onClick={handleLinkClick}> Login Here</a>
+                                    <span> Already have an account?</span><a href="#" class="link login-link" ref={linksRef} onClick={handleRegisterLink}> Login Here</a>
                                 </div>
 
                             </form>
@@ -147,18 +162,37 @@ function LoginOptions() {
                             </a>
                         </div>
                     </div>
+
+                    <div class="form forgotpwd">
+                        <div class="form-content">
+                            <header class="form-header">Password Recovery</header>
+                            <form action="#">
+                                <div>
+                                    <h1 class="recovery-text"> Enter your email to recover your email.</h1>
+                                </div>
+
+                                <div class="field input-field">
+                                    <input type="email" placeholder="Email" class="input"></input>
+                                </div>
+
+                                <div class="field button-field">
+                                    <button onclick="changeText()">Submit</button>
+                                </div>
+
+                                <div class="form-link">
+                                    <span> Already have an account?</span><a href="#" class="link login-link" ref={linksRef} onClick={handleForgotPwdLink}> Login Here</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
                 </section>
-                <script>
-                    
-                </script>
             </body>
-        </>
-        
-    
+        </>      
     );
 };
 
 
 export default LoginOptions;
-
 

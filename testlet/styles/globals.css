@@ -286,17 +286,32 @@ a {
   background: white;
 }
 
-.form.signup {
+.forms .signup {
   opacity: 0;
   pointer-events: none;
 }
 
-.forms.show-signup .form.signup {
+.forms .forgotpwd {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.forms.show-forgotpwd .forgotpwd {
   opacity: 1;
   pointer-events: auto;
 }
 
-.forms.show-signup .form.login {
+.forms.show-forgotpwd .login {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.forms.show-signup .signup {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.forms.show-signup .login {
   opacity: 0;
   pointer-events: none;
 }
@@ -375,6 +390,12 @@ a {
   font-weight: 400;
   color: #232836;
 }
+.form .recovery-text {
+  color:black;
+  font-size: 14px;
+  text-align: center;
+  justify-content: center;
+}
 
 .form a {
   color: #0171d3;
@@ -385,7 +406,7 @@ a {
   text-decoration: underline;
 }
 
-.line {
+.form-line {
   position: relative;
   height: 1px;
   width: 100%;
@@ -393,7 +414,7 @@ a {
   background-color: #d4d4d4;
 }
 
-.line::before {
+.form-line::before {
   content: 'Or';
   position: absolute;
   top: 50%;
