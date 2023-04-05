@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "@/firebase/clientApp";
 
 function Navbar() {
-  const [user] = useAuthState(auth);
+  const [userState] = useAuthState(auth);
 
   return (
     <nav className="nav">
@@ -29,17 +29,17 @@ function Navbar() {
       <ul>
         <li>
           <>
-            <Link href="/personalSets">{user && "Your Sets"}</Link>
+            <Link href="/personalSets">{userState && "Your Sets"}</Link>
           </>
         </li>
         <li>
           <>
-            <Link href="/createSet">{user && "Create Set"}</Link>
+            <Link href="/createSet">{userState && "Create Set"}</Link>
           </>
         </li>
         <li>
           <>
-            <Link href="/account">{user?.displayName}</Link>
+            <Link href="/account">{userState?.displayName}</Link>
           </>
         </li>
         <li>
@@ -49,7 +49,7 @@ function Navbar() {
         </li>
         <li>
           <>
-            <Link href="/LoginPages/loginOptions">{!user && "Login"}</Link>
+            <Link href="/LoginPages/loginOptions">{!userState && "Login"}</Link>
           </>
         </li>
       </ul>

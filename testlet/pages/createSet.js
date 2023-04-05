@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Flashcard from "./components/Flashcard";
+import Flashcard from "./components/flashcard";
 import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 
