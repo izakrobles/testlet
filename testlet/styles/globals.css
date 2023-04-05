@@ -112,10 +112,6 @@ a {
   font-size: 2rem;
 }
 
-.nav .logo {
-  margin-top: 10px;
-}
-
 .nav .home {
   flex-grow: 1;
   font-size: 2rem;

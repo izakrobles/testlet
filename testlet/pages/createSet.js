@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Flashcard from "./components/flashcard";
+import Flashcard from "./components/Flashcard";
 import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 
@@ -29,6 +29,11 @@ function CreateSet() {
     setAnswer("");
     setQuestion("");
   };
+
+
+  // setQuestion(flashcards[index].question)
+  // tie in to delete button 
+  // Add new handle edit function with flashcard on click
 
   const handleDeleteFlashcard = (index) => {
     const newFlashcards = [...flashcards];
