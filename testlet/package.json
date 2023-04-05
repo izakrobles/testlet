@@ -10,9 +10,13 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "firebase": "^9.17.2",
+=======
+    "firebase": "^9.19.1",
+>>>>>>> 4da8346 (combined login, register, forgotpwd into 1 page)
     "formik": "^2.2.9",
     "next": "^13.2.3",
     "react": "^18.2.0",
