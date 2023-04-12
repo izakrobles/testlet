@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/clientApp"
+import { auth } from "../../firebase/clientApp";
 import { GoogleAuthProvider, EmailAuthCredential } from "firebase/auth";
 
 const schema = Yup.object().shape({
@@ -24,7 +24,7 @@ function Login() {
         }}
       >
         {({
-          values,   
+          values,
           errors,
           touched,
           handleChange,
@@ -35,7 +35,7 @@ function Login() {
             <div className="form">
               <form noValidate onSubmit={handleSubmit}>
                 <span>Login</span>
-              {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
+                {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <input
                   type="email"
                   name="email"
@@ -62,12 +62,23 @@ function Login() {
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
-                <p><a href="/LoginPages/forgotpwd" style={{ color: 'blue' }}>Forgot Password</a>.</p>
+                <p>
+                  <a href="/LoginPages/forgotpwd" style={{ color: "blue" }}>
+                    Forgot Password
+                  </a>
+                  .
+                </p>
                 <br></br>
                 <button type="submit">Login</button>
                 <p></p>
                 <br></br>
-                <p style={{ color: 'black' }}>No Account? Register <a href="/LoginPages/register" style={{ color: 'blue' }}>here</a>.</p>
+                <p style={{ color: "black" }}>
+                  No Account? Register{" "}
+                  <a href="/LoginPages/register" style={{ color: "blue" }}>
+                    here
+                  </a>
+                  .
+                </p>
               </form>
             </div>
           </div>

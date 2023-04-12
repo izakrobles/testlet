@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Flashcard from "./components/flashcard";
-import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  updateDoc,
+  addDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 
 function CreateSet() {
@@ -30,9 +37,8 @@ function CreateSet() {
     setQuestion("");
   };
 
-
   // setQuestion(flashcards[index].question)
-  // tie in to delete button 
+  // tie in to delete button
   // Add new handle edit function with flashcard on click
 
   const handleDeleteFlashcard = (index) => {
@@ -64,15 +70,15 @@ function CreateSet() {
         answer: flashcard.answer,
       });
     }
-    
-    const docRef = doc(db, 'sets', user);
+
+    const docRef = doc(db, "sets", user);
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
       const userData = docSnapshot.data();
       const updatedSets = [...userData.UserSets, title];
       await updateDoc(docRef, { UserSets: updatedSets });
-    } else{
-      await setDoc(docRef, {UserSets: [title]})
+    } else {
+      await setDoc(docRef, { UserSets: [title] });
     }
     setAnswer("");
     setQuestion("");
@@ -90,7 +96,12 @@ function CreateSet() {
       )}
       <form className="new-set">
         <label>Your Set Title:</label>
-        <input className="title" type="text" name="title" onChange={(e) => setTitle(e.target.value)} ></input>
+        <input
+          className="title"
+          type="text"
+          name="title"
+          onChange={(e) => setTitle(e.target.value)}
+        ></input>
         <button className="save-button" onClick={handleSaveSetButton}>
           Save New Set
         </button>

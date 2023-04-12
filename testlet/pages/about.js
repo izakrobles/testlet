@@ -75,7 +75,11 @@ const About = () => {
       <Container className="my-5">
         <Row>
           <Col>
-            <img src="group-photo.jpg" alt="group photo, its gotta happen" className="img-fluid" />
+            <img
+              src="group-photo.jpg"
+              alt="group photo, its gotta happen"
+              className="img-fluid"
+            />
           </Col>
           <Col>
             <h2>Our Team</h2>

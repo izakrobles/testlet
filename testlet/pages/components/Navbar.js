@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/clientApp";
 
 function Navbar() {
@@ -22,7 +22,12 @@ function Navbar() {
           <label htmlFor="setName">Search</label>
           <input className="box" type="text" id="setName" name="setName" />
           <Link className="search-icon" href="">
-            <Image className="submit" src="/search.png" width={30} height={30} />
+            <Image
+              className="submit"
+              src="/search.png"
+              width={30}
+              height={30}
+            />
           </Link>
         </form>
       </>

@@ -23,10 +23,17 @@ const Home = () => {
             </a>
           </Col>
           <Col md={6}>
-          <video controls={false} muted autoPlay loop width={"100%"} height={"100%"}>
-            <source src="/stockA.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            <video
+              controls={false}
+              muted
+              autoPlay
+              loop
+              width={"100%"}
+              height={"100%"}
+            >
+              <source src="/stockA.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </Col>
         </Row>
       </Container>
@@ -74,7 +81,14 @@ const Home = () => {
       <Container className="my-5">
         <Row>
           <Col md={6}>
-            <video controls={false} muted autoPlay loop width={"100%"} height={"100%"}>
+            <video
+              controls={false}
+              muted
+              autoPlay
+              loop
+              width={"100%"}
+              height={"100%"}
+            >
               <source src="/stockB.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>

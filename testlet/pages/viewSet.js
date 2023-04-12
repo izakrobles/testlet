@@ -1,12 +1,11 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { collection } from "firebase/firestore";
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db,auth } from "@/firebase/clientApp";
+import { db, auth } from "@/firebase/clientApp";
 import Flashcard from "./components/flashcard";
 import Link from "next/link";
-
 
 function ViewSet() {
   const router = useRouter();
@@ -34,7 +33,7 @@ function ViewSet() {
       <h1>{decodedSet}</h1>
 
       <Link href={{ pathname: "/study", query: { set: set } }}>
-          <h2>Study</h2>
+        <h2>Study</h2>
       </Link>
 
       {flashcards && (
