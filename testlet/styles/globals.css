@@ -141,7 +141,15 @@ main {
   text-align: center;
   color: #000000;
   font-size: 20px;
+  flex: 1,
 }
+.nav .search-icon {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: transparent;
+}
+
 
 .nav ul {
   font-size: 1.5rem;
