@@ -99,6 +99,10 @@ a {
   text-decoration: none;
 }
 
+main {
+  min-height: 100vh;
+}
+
 /* Navbar Styling */
 .nav {
   background-color: #004aad;
@@ -110,10 +114,6 @@ a {
   padding: 0 1rem;
   height: fit-content;
   font-size: 2rem;
-}
-
-.nav .logo {
-  margin-top: 10px;
 }
 
 .nav .home {
@@ -264,6 +264,34 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.FlipCard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.FlipCard-post {
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10%;
+  align-items: center;
+  height: 300px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.FlipCard-post h1 {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
 }
 
 /* Login Styling */
@@ -451,11 +479,47 @@ a.google span {
   color: #232836;
 }
 
-/* Home Page */
+/* Home Page and About page*/
 
 .feature-title {
   color: black;
 }
+
+.our-team {
+  color: white;
+}
+
+/* account page stuff */
+.account-tab {
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 2px;
+  height: fit-content;
+  font-size: 1rem;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.account-tab .nav-link.active {
+  border: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom-color: white;
+  border-bottom: 2px solid;
+}
+
+/* Set the background color of the tab content to match the page background
+.tab-content {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+*/
 
 /* Footer component */
 /*
