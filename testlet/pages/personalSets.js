@@ -42,7 +42,7 @@ function PersonalSets() {
       <p>&nbsp;</p>
       {sets.map((setName, index) => (
         <div key={index}>
-          <Link href={{ pathname: "/viewSet", query: { set: setName } }}>
+          <Link href={{ pathname: "/viewSet", query: { user: userState.displayName , set: setName } }}>
             <h2>{setName}</h2>
           </Link>
           <p>&nbsp;</p>

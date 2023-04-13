@@ -141,7 +141,8 @@ main {
   text-align: center;
   color: #000000;
   font-size: 20px;
-  flex: 1,
+  flex: 1;
+  width: 80%;
 }
 .nav .search-icon {
   background-color: transparent;
