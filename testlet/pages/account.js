@@ -2,9 +2,17 @@ import Link from "next/link";
 import { auth } from "../firebase/clientApp";
 import React, { useState } from "react";
 import Head from "next/head";
-import { Container, Row, Col, Nav, TabContent, TabPane, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Nav,
+  TabContent,
+  TabPane,
+  Button,
+} from "react-bootstrap";
 import classnames from "classnames";
-import { Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs } from "react-bootstrap";
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState("1");
@@ -37,7 +45,11 @@ const Account = () => {
           </Row>
         </Container>
         <Container>
-          <Tabs className="account-tab" activeKey={activeTab} onSelect={(selectedTab) => toggle(selectedTab)}>
+          <Tabs
+            className="account-tab"
+            activeKey={activeTab}
+            onSelect={(selectedTab) => toggle(selectedTab)}
+          >
             <Tab eventKey="1" title="Account Information">
               <h4>Account Information</h4>
               <p>Name: Jog Dough</p>
@@ -67,6 +79,6 @@ const Account = () => {
       </div>
     </>
   );
-}
+};
 
 export default Account;

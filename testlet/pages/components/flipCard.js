@@ -11,7 +11,7 @@ function FlipCard(props) {
 
   return (
     <div className="FlipCard-container">
-      <div className="FlipCard-post" onClick={toggleView} >
+      <div className="FlipCard-post" onClick={toggleView}>
         <h1>{show}</h1>
       </div>
     </div>
