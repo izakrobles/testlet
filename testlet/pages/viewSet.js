@@ -9,13 +9,13 @@ import Link from "next/link";
 
 function ViewSet() {
   const router = useRouter();
-  const { set } = router.query;
-  const user = auth.currentUser.displayName;
+  const { user, set } = router.query;
 
   const decodedSet = decodeURIComponent(set);
+  const decodedUser = decodeURIComponent(user);
 
   const [flashcards, loading, error] = useCollection(
-    collection(db, "sets", user, decodedSet)
+    collection(db, "sets", decodedUser, decodedSet)
   );
 
   if (error) {
@@ -32,8 +32,8 @@ function ViewSet() {
       <title>{decodedSet}</title>
       <h1>{decodedSet}</h1>
 
-      <Link href={{ pathname: "/study", query: { set: set } }}>
-        <h2>Study</h2>
+      <Link href={{ pathname: "/study", query: { user: decodedUser, set: set } }}>
+          <h2>Study</h2>
       </Link>
 
       {flashcards && (

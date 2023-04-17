@@ -7,14 +7,14 @@ import FlipCard from "./components/flipCard";
 
 function Study() {
   const router = useRouter();
-  const { set } = router.query;
-  const user = auth.currentUser.displayName;
+  const { user, set } = router.query;
 
   const decodedSet = decodeURIComponent(set);
+  const decodedUser = decodeURIComponent(user);
 
   const [iterator, setIterator] = useState(0);
   const [flashcards, loading, error] = useCollection(
-    collection(db, "sets", user, decodedSet)
+    collection(db, "sets", decodedUser, decodedSet)
   );
 
   useEffect(() => {

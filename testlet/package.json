@@ -10,6 +10,8 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "firebase": "^9.17.2",
     "formik": "^2.2.9",
     "next": "^13.2.3",
@@ -17,6 +19,7 @@
     "react-bootstrap": "^2.7.2",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.9.0",
     "reactstrap": "^9.1.8",
     "yup": "^1.0.2"

@@ -9,6 +9,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function CreateSet() {
   const [flashcards, setFlashcards] = useState([]);
@@ -17,7 +18,22 @@ function CreateSet() {
   const [showPopup, setShowPopup] = useState(false);
   const [title, setTitle] = useState("");
 
-  const user = auth.currentUser.displayName;
+  const [userState, loading, error] = useAuthState(auth);
+  
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>Error: {error}</h2>;
+  }
+
+  if (!userState) {
+    return <h2>You need to be signed in to view this page.</h2>;
+  }
+
+  const user = userState.displayName;
 
   const handleAddFlashcard = () => {
     if (!answer | !question) {
