@@ -17,6 +17,14 @@ function Navbar() {
     setSearchTerm(event.target.value)
   };
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.log("Error signing out: ", error);
+    }
+  };
+
   return (
     <nav className="nav">
       <Link href="/">
@@ -63,6 +71,11 @@ function Navbar() {
         <li>
           <h3>
             <Link href="login">{!userState && "Login"}</Link>
+          </h3>
+        </li>
+        <li>
+          <h3>
+            <Link href="/" onClick={handleLogout}>{userState && "Logout"}</Link>
           </h3>
         </li>
       </ul>
