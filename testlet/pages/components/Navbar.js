@@ -62,7 +62,7 @@ function Navbar() {
         </li>
         <li>
           <h3>
-            <Link href="/LoginPages/loginOptions">{!userState && "Login"}</Link>
+            <Link href="login">{!userState && "Login"}</Link>
           </h3>
         </li>
       </ul>
