@@ -10,16 +10,16 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Container, Row, Col } from "react-bootstrap";
 
 function CreateSet() {
+  const [showPopup, setShowPopup] = useState(false);
   const [flashcards, setFlashcards] = useState([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
   const [title, setTitle] = useState("");
 
   const [userState, loading, error] = useAuthState(auth);
-  
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -69,6 +69,9 @@ function CreateSet() {
   const handleSetAnswer = (event) => {
     setAnswer(event.target.value);
   };
+  const handleSetTitle = (event) => {
+    setTitle(event.target.value);
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -116,33 +119,29 @@ function CreateSet() {
           className="title"
           type="text"
           name="title"
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={handleSetTitle}
         ></input>
         <button className="save-button" onClick={handleSaveSetButton}>
           Save New Set
         </button>
       </form>
       <div className="create-sets">
-        <form>
-          <label>Question: </label>
-          <input
-            type="text"
-            className="question"
-            value={question}
-            onChange={handleSetQuestion}
-            onKeyDown={handleKeyDown}
-          ></input>
-        </form>
-        <form>
-          <label>Answer: </label>
-          <input
-            type="text"
-            className="answer"
-            value={answer}
-            onChange={handleSetAnswer}
-            onKeyDown={handleKeyDown}
-          ></input>
-        </form>
+        <label>Question: </label>
+        <input
+          type="text"
+          className="question"
+          value={question}
+          onChange={handleSetQuestion}
+          onKeyDown={handleKeyDown}
+        ></input>
+        <label>Answer: </label>
+        <input
+          type="text"
+          className="answer"
+          value={answer}
+          onChange={handleSetAnswer}
+          onKeyDown={handleKeyDown}
+        ></input>
         <button className="create-set-button" onClick={handleAddFlashcard}>
           +
         </button>
