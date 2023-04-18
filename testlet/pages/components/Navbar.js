@@ -17,6 +17,12 @@ function Navbar() {
     setSearchTerm(event.target.value)
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      document.getElementById("search-button").click();
+    }
+  };
+
   return (
     <nav className="nav">
       <Link href="/">
@@ -30,12 +36,13 @@ function Navbar() {
       <h3>Search</h3>
       <div className="search">
         <input
-            type="text"
-            className="box"
-            value={searchTerm}
-            onChange={handleSetSearch}
-          ></input>
-        <button className="search-icon" onClick={handleSearch}>
+          type="text"
+          className="box"
+          value={searchTerm}
+          onChange={handleSetSearch}
+          onKeyPress={handleKeyPress}
+        ></input>
+        <button id="search-button" className="search-icon" onClick={handleSearch}>
           <Image className="submit" src="/search.png" width={45} height={45} />
         </button>
       </div>
