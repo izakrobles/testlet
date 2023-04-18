@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import Flashcard from "./components/flashcard";
-import {
-  collection,
-  doc,
-  updateDoc,
-  addDoc,
-  getDoc,
-  setDoc,
-} from "firebase/firestore";
+import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Container, Row, Col } from "react-bootstrap";
 
 function CreateSet() {
   const [showPopup, setShowPopup] = useState(false);
@@ -80,7 +72,7 @@ function CreateSet() {
     }
   };
 
-  const handleSaveSetButton = async () => {
+  const handleSaveSetButton = async (event) => {
     event.preventDefault();
     const collectionRef = collection(db, "sets", user, title);
     for (const flashcard of flashcards) {
@@ -99,15 +91,15 @@ function CreateSet() {
     } else {
       await setDoc(docRef, { UserSets: [title] });
     }
+    setTitle("");
     setAnswer("");
     setQuestion("");
     setFlashcards([]);
-    setTitle("");
   };
 
   return (
     <>
-      <title>Create a Set</title>
+      <title>{title ? "Creating set: "+title : "Create a Set"}</title>
       {showPopup && (
         <div className="popup" onClick={() => setShowPopup(false)}>
           Make sure there is content in both boxes.
@@ -119,6 +111,7 @@ function CreateSet() {
           className="title"
           type="text"
           name="title"
+          value={title}
           onChange={handleSetTitle}
         ></input>
         <button className="save-button" onClick={handleSaveSetButton}>

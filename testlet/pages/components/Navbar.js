@@ -47,7 +47,7 @@ function Navbar() {
           className="search-icon"
           onClick={handleSearch}
         >
-          <Image className="submit" src="/search.png" width={45} height={45} />
+          <Image className="submit" src="/search.png" width={35} height={35} />
         </button>
       </div>
       <ul>

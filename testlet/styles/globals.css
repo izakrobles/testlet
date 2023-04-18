@@ -110,29 +110,30 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2%;
-  padding: 0.5%;
-  font-size: 1.5vw;
+  gap: 1.6%;
+  padding: 0.4%;
+  font-size: 1vw;
+  vertical-align: center;
 }
 
 .nav .home,
 .nav .search {
   flex-grow: 1;
-  font-size: 1.5vw;
+  font-size: 1vw;
   padding: 0;
   list-style: none;
   display: flex;
-  gap: 1vw;
+  gap: 0.8vw;
 }
 
 .nav .search .box {
   background-color: aliceblue;
-  border-radius: 50px;
+  border-radius: 40px;
   text-align: center;
   color: #000000;
-  font-size: 1.4vw;
+  font-size: 1.6vw;
   flex: 1;
-  width: 80%;
+  width: 64%;
 }
 
 .nav .search-icon {
@@ -140,21 +141,22 @@ main {
   border: none;
   box-shadow: none;
   color: transparent;
-  font-size: 1.5vw;
+  font-size: 1.2vw;
 }
 
 .nav ul {
-  font-size: 1vw;
+  font-size: 0.8vw;
   padding: 0;
   margin: 0;
   list-style: none;
   display: flex;
-  gap: 1vw;
+  gap: 0.8vw;
 }
 
 .nav .title {
-  margin-left: -2vw;
+  margin-left: -1.6vw;
 }
+
 
 
 
@@ -185,6 +187,7 @@ main {
   color: #fff;
   border-radius: 10px;
   padding: 0.5rem;
+  font-size: 60%;
 }
 .new-set .save-button:hover {
   background-color: #002b6d;
@@ -223,17 +226,18 @@ main {
 .create-sets .question{
   background-color: white;
   color: black;
-  width: 40%;
+  width: 39%;
   padding: 1%;
   border-radius: 10px;
 }
 .create-sets .answer {
   background-color: white;
   color: black;
-  width: 40%;
+  width: 39%;
   padding: 1%;
   border-radius: 10px;
   margin-right: 40px;
+  margin-left: 10px;
 }
 
 .popup {
@@ -251,7 +255,7 @@ main {
 }
 
 .flashcard-container {
-  max-width: 50rem;
+  width: 70%;
   margin: auto;
   display: flex;
   justify-content: space-between;
