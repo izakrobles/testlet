@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/clientApp";
 
@@ -25,7 +26,7 @@ function Navbar() {
   return (
     <nav className="nav">
       <Link href="/">
-        <img className="logo" src="/testlet.png" width={60} height={60} />
+        <Image alt="logo" className="logo" src="/testlet.png" width={60} height={60} />
       </Link>
       <Link href="/">
         <div className="home">
@@ -39,14 +40,14 @@ function Navbar() {
           className="box"
           value={searchTerm}
           onChange={handleSetSearch}
-          onClick={handleKeyPress}
+          onKeyDown={handleKeyPress}
         ></input>
         <button
           id="search-button"
           className="search-icon"
           onClick={handleSearch}
         >
-          <img className="submit" src="/search.png" width={35} height={35} />
+          <Image alt="submit" className="submit" src="/search.png" width={35} height={35} />
         </button>
       </div>
       <ul>

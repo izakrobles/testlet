@@ -44,20 +44,20 @@ function SearchResults() {
       <h1>Searching for {decodedSearch}</h1>
       <ul>
         {results.map((result) => (
-          <li key={result.id}>
-            <h2>{result.collectionName}</h2>
+          <li key={(result,Math.random())}>
+            <h5>{result.collectionName}</h5>
             <ul>
               {result.UserSets.map(
                 (set) =>
                   set.toLowerCase().includes(decodedSearch.toLowerCase()) && (
-                    <li key={set.id}>
+                    <li key={(set.collectionName,Math.random())}>
                       <Link
                         href={{
                           pathname: "/viewSet",
                           query: { user: result.collectionName, set: set },
                         }}
                       >
-                        <h2>{set}</h2>
+                        <h5>{set}</h5>
                       </Link>
                     </li>
                   )
