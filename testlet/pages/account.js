@@ -2,15 +2,7 @@ import Link from "next/link";
 import { auth } from "../firebase/clientApp";
 import React, { useState } from "react";
 import Head from "next/head";
-import {
-  Container,
-  Row,
-  Col,
-  Nav,
-  TabContent,
-  TabPane,
-  Button,
-} from "react-bootstrap";
+import { Container, Row, Col, Nav, TabContent, TabPane, Button } from "react-bootstrap";
 import classnames from "classnames";
 import { Tab, Tabs } from "react-bootstrap";
 
