@@ -1,18 +1,37 @@
-import React from "react";
+import { React, useEffect } from "react";
+import Router from "next/router";
 import Link from "next/link";
 import { auth } from "../../firebase/clientApp";
-import { GoogleAuthProvider, EmailAuthCredential } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithRedirect,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth, signInWithRedirect } from "firebase/auth";
 
 const google = new GoogleAuthProvider();
 const pasUser = getAuth();
-const handleGoogle = () => {
-  signInWithRedirect(auth, google);
+const handleGoogle = async () => {
+  try {
+    await signInWithRedirect(auth, google);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 function LoginOptions() {
   const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        Router.push("/account");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;

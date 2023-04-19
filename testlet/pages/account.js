@@ -23,6 +23,7 @@ const Account = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
+      window.location.href = `/`;
     } catch (error) {
       console.log("Error signing out: ", error);
     }

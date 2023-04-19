@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Flashcard from "./components/flashcard";
-import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  updateDoc,
+  addDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -99,7 +106,7 @@ function CreateSet() {
 
   return (
     <>
-      <title>{title ? "Creating set: "+title : "Create a Set"}</title>
+      <title>{title ? "Creating set: " + title : "Create a Set"}</title>
       {showPopup && (
         <div className="popup" onClick={() => setShowPopup(false)}>
           Make sure there is content in both boxes.
