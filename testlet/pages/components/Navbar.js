@@ -6,7 +6,7 @@ import { auth } from "@/firebase/clientApp";
 
 function Navbar() {
   const [userState] = useAuthState(auth);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -14,7 +14,13 @@ function Navbar() {
   };
 
   const handleSetSearch = (event) => {
-    setSearchTerm(event.target.value)
+    setSearchTerm(event.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      document.getElementById("search-button").click();
+    }
   };
 
   const handleLogout = async () => {
@@ -28,7 +34,7 @@ function Navbar() {
   return (
     <nav className="nav">
       <Link href="/">
-        <Image className="logo" src="/testlet.png" width={60} height={60} />
+        <Image alt="logo" className="logo" src="/testlet.png" width={60} height={60} />
       </Link>
       <Link href="/">
         <div className="home">
@@ -38,13 +44,18 @@ function Navbar() {
       <h3>Search</h3>
       <div className="search">
         <input
-            type="text"
-            className="box"
-            value={searchTerm}
-            onChange={handleSetSearch}
-          ></input>
-        <button className="search-icon" onClick={handleSearch}>
-          <Image className="submit" src="/search.png" width={45} height={45} />
+          type="text"
+          className="box"
+          value={searchTerm}
+          onChange={handleSetSearch}
+          onKeyDown={handleKeyPress}
+        ></input>
+        <button
+          id="search-button"
+          className="search-icon"
+          onClick={handleSearch}
+        >
+          <Image alt="submit" className="submit" src="/search.png" width={35} height={35} />
         </button>
       </div>
       <ul>

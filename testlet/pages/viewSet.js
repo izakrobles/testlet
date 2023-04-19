@@ -32,8 +32,10 @@ function ViewSet() {
       <title>{decodedSet}</title>
       <h1>{decodedSet}</h1>
 
-      <Link href={{ pathname: "/study", query: { user: decodedUser, set: set } }}>
-          <h2>Study</h2>
+      <Link
+        href={{ pathname: "/study", query: { user: decodedUser, set: set } }}
+      >
+        <h2>Study</h2>
       </Link>
 
       {flashcards && (

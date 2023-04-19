@@ -7,15 +7,36 @@ function FlipCard(props) {
     setView(!view);
   };
 
-  let show = view ? props.answer : props.question;
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+      event.preventDefault();
+      toggleView();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [view]);
+
+  useEffect(() => {
+    setView(false);
+  }, [props.question, props.answer]);
 
   return (
     <div className="FlipCard-container">
-      <div className="FlipCard-post" onClick={toggleView}>
-        <h1>{show}</h1>
+      <div
+        className={`flip-card ${view ? "flipped" : ""}`}
+        onClick={toggleView}
+      >
+        <div className="flip-card-inner">
+          <div className="flip-card-front">{props.question}</div>
+          <div className="flip-card-back">{view ? props.answer : ""}</div>
+        </div>
       </div>
     </div>
   );
 }
-
 export default FlipCard;
