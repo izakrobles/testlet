@@ -79,7 +79,7 @@ function Study() {
     return <div>Loading...</div>;
   }
 
-  const progress = Math.round((iterator / (flashcards.length-1)) * 100);
+  const progress = Math.round(((iterator+1) / (flashcards.length)) * 100);
   const flashcard = flashcards[iterator];
 
   return (
@@ -102,7 +102,7 @@ function Study() {
           }}>Restart</button>
       {flashcards.length > 0 && (
         <div style={{ marginTop: "1rem" }}>
-          Progress: {progress}% ({iterator}/{flashcards.length-1})
+          Progress: {progress}% ({iterator+1}/{flashcards.length})
           <div
             style={{
               backgroundColor: "#ccc",
