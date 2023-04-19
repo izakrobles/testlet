@@ -40,7 +40,7 @@ const Account = () => {
             </Col>
             <Col md={6}>
               <h2>JDough1</h2>
-              <p>Jog Dough</p>
+              <p>{local.displayName}</p>
             </Col>
           </Row>
         </Container>
@@ -52,8 +52,8 @@ const Account = () => {
           >
             <Tab eventKey="1" title="Account Information">
               <h4>Account Information</h4>
-              <p>Name: Jog Dough</p>
-              <p>Email: Jog Dough Email</p>
+              <p>Name: {local.displayName}</p>
+              <p>Email: {local.email}</p>
               <p>Account Created: Day-Month-Year</p>
             </Tab>
             <Tab eventKey="2" title="Recent Sets">
