@@ -36,11 +36,11 @@ const Account = () => {
         <Container className="my-5">
           <Row>
             <Col md={2}>
-              <img src="/nopfp.png" className="profile-pic" />
+              {local && <img src={local.photoURL || "/nopfp.png"} className="profile-pic" />}
             </Col>
             <Col md={6}>
               <h2>JDough1</h2>
-              <p>{local.displayName}</p>
+              <p>{local?.displayName}</p>
             </Col>
           </Row>
         </Container>
@@ -52,8 +52,8 @@ const Account = () => {
           >
             <Tab eventKey="1" title="Account Information">
               <h4>Account Information</h4>
-              <p>Name: {local.displayName}</p>
-              <p>Email: {local.email}</p>
+              <p>Name: {local?.displayName}</p>
+              <p>Email: {local?.email}</p>
               <p>Account Created: Day-Month-Year</p>
             </Tab>
             <Tab eventKey="2" title="Recent Sets">
