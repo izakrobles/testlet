@@ -13,9 +13,19 @@ function Study() {
   const decodedUser = decodeURIComponent(user);
 
   const [iterator, setIterator] = useState(0);
-  const [flashcards, loading, error] = useCollection(
+  const [flashcards, setFlashcards] = useState([]);
+  const [key, setKey] = useState(0);
+
+
+  const [raw, loading, error] = useCollection(
     collection(db, "sets", decodedUser, decodedSet)
   );
+
+  useEffect(() => {
+    if (raw) {
+      setFlashcards(raw.docs);
+    }
+  }, [raw]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -23,7 +33,7 @@ function Study() {
         setIterator(iterator - 1);
       } else if (
         event.keyCode === 39 &&
-        iterator < flashcards.docs.length - 1
+        iterator < flashcards.length - 1
       ) {
         setIterator(iterator + 1);
       }
@@ -33,6 +43,32 @@ function Study() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [iterator, flashcards]);
+  
+  const handlePrev = () =>{
+    if (iterator > 0) {
+      setIterator(iterator - 1);
+    }
+  };
+
+  const handleNext = () =>{
+    if (iterator < flashcards.length - 1) {
+      setIterator(iterator + 1);
+    }
+  };
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  const handleShuffle = () => {
+    setFlashcards(shuffleArray(flashcards));
+    setIterator(0);
+    setKey(key+1);
+  };
 
   if (error) {
     console.error("Error fetching data: ", error);
@@ -43,22 +79,77 @@ function Study() {
     return <div>Loading...</div>;
   }
 
-  const flashcard = flashcards.docs[iterator];
+  const progress = Math.round((iterator / (flashcards.length-1)) * 100);
+  const flashcard = flashcards[iterator];
 
   return (
     <>
       <title>{decodedSet}</title>
       <h1>{decodedSet}</h1>
+      <button onClick={handleShuffle} 
+            style={{backgroundColor: '#004aad',
+             color: 'white',
+             width: '10%',
+             borderBottomLeftRadius: 20,
+             borderTopLeftRadius: 20,
+          }}>Shuffle</button>
+      <button onClick={() => setIterator(0)} 
+            style={{backgroundColor: '#004aad',
+             color: 'white',
+             width: '10%',
+             borderBottomRightRadius: 20,
+             borderTopRightRadius: 20,
+          }}>Restart</button>
+      {flashcards.length > 0 && (
+        <div style={{ marginTop: "1rem" }}>
+          Progress: {progress}% ({iterator}/{flashcards.length-1})
+          <div
+            style={{
+              backgroundColor: "#ccc",
+              height: "0.5rem",
+              borderRadius: "0.25rem",
+              marginTop: "0.5rem",
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: "#004aad",
+                height: "0.5rem",
+                width: `${progress}%`,
+                borderRadius: "0.25rem",
+              }}
+            ></div>
+          </div>
+        </div>
+      )}
       {flashcard && (
         <div className="flashcard">
           <FlipCard
+            key={key}
             question={flashcard.data().question}
             answer={flashcard.data().answer}
           />
+          <div style={{textAlign: 'center', marginTop: '1%'}}>
+            <button onClick={handlePrev} 
+            style={{backgroundColor: '#004aad',
+             color: 'white',
+             width: '10%',
+             borderBottomLeftRadius: 20,
+             borderTopLeftRadius: 20,
+          }}>Previous</button>
+            <button onClick={handleNext} 
+            style={{backgroundColor: '#004aad',
+             color: 'white',
+             width: '10%',
+             borderBottomRightRadius: 20,
+             borderTopRightRadius: 20,
+          }}>Next</button>
+          </div>
         </div>
       )}
     </>
   );
 }
+
 
 export default Study;
