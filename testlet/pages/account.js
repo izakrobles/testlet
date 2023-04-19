@@ -73,8 +73,9 @@ const Account = () => {
               <p>User Data = Sold</p>
             </Tab>
           </Tabs>
-
-          <Button onClick={handleLogout}>Logout</Button>
+          <Link href="/">
+            <Button onClick={handleLogout}>Logout</Button>
+          </Link>
         </Container>
       </div>
     </>
