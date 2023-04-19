@@ -29,6 +29,7 @@ const Account = () => {
   };
 
   const local = auth.currentUser;
+  const username = local && local.email.split("@")[0];
 
   return (
     <>
@@ -39,7 +40,7 @@ const Account = () => {
               {local && <img src={local.photoURL || "/nopfp.png"} className="profile-pic" />}
             </Col>
             <Col md={6}>
-              <h2>JDough1</h2>
+              <h2>{username}</h2>
               <p>{local?.displayName}</p>
             </Col>
           </Row>
