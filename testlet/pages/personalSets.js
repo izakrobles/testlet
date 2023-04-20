@@ -3,6 +3,7 @@ import Link from "next/link";
 import { db, auth } from "@/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "./components/loading";
 
 function PersonalSets() {
   const [userState, loading, error] = useAuthState(auth);
@@ -23,7 +24,7 @@ function PersonalSets() {
   }, [loading, userState]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading/>
   }
 
   if (error) {

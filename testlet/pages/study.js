@@ -4,6 +4,7 @@ import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import FlipCard from "./components/flipCard";
+import Loading from "./components/loading";
 
 function Study() {
   const router = useRouter();
@@ -76,7 +77,7 @@ function Study() {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading/>;
   }
 
   const progress = Math.round(((iterator+1) / (flashcards.length)) * 100);

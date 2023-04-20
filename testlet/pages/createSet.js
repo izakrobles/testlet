@@ -10,18 +10,23 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "./components/loading";
 
 function CreateSet() {
-  const [showPopup, setShowPopup] = useState(false);
+  const [popupA, showPopupA] = useState(false);
+  const [popupB, showPopupB] = useState(false);
+  const [created, setCreated] = useState(false);
   const [flashcards, setFlashcards] = useState([]);
+  const [title, setTitle] = useState("");
+  const [prevTitle, setPrevTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-  const [title, setTitle] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const [userState, loading, error] = useAuthState(auth);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loading />;
   }
 
   if (error) {
@@ -36,9 +41,9 @@ function CreateSet() {
 
   const handleAddFlashcard = () => {
     if (!answer | !question) {
-      setShowPopup(true);
+      showPopupA(true);
       setTimeout(() => {
-        setShowPopup(false);
+        showPopupA(false);
       }, 1750);
       return;
     }
@@ -79,8 +84,20 @@ function CreateSet() {
     }
   };
 
+  const handleGoToNewSet = () => {
+    window.location.href = `/viewSet?user=${userState.displayName}&set=${prevTitle}`;
+  };
+
   const handleSaveSetButton = async (event) => {
     event.preventDefault();
+    if(title === '' || flashcards.length < 1){
+      showPopupB(true);
+      setTimeout(() => {
+        showPopupB(false);
+      }, 1750);
+      return;
+    }
+    setSaving(true);
     const collectionRef = collection(db, "sets", user, title);
     for (const flashcard of flashcards) {
       await addDoc(collectionRef, {
@@ -98,18 +115,38 @@ function CreateSet() {
     } else {
       await setDoc(docRef, { UserSets: [title] });
     }
+    setPrevTitle(title);
     setTitle("");
     setAnswer("");
     setQuestion("");
     setFlashcards([]);
+    setSaving(false);
+
+    setCreated(true);
+    setTimeout(() => {
+      setCreated(false);
+    }, 10000);
+    
   };
 
-  return (
+  return saving ? (
+    <Loading />
+  ) : (
     <>
       <title>{title ? "Creating set: " + title : "Create a Set"}</title>
-      {showPopup && (
-        <div className="popup" onClick={() => setShowPopup(false)}>
+      {popupA && (
+        <div className="popup" onClick={() => showPopupA(false)}>
           Make sure there is content in both boxes.
+        </div>
+      )}
+      {popupB && (
+        <div className="popup" onClick={() => showPopupB(false)}>
+          Make sure there is a title and at least one flashcard
+        </div>
+      )}
+      {created && (
+        <div className="navigateNew" onClick={() => handleGoToNewSet()}>
+          You just created a new set. If you would like to see it click here!
         </div>
       )}
       <form className="new-set">

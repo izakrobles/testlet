@@ -161,6 +161,10 @@ main {
 
 
 /* Create Sets Page */
+.navigateNew{
+  align-self: center;
+  background-color: red;
+}
 .new-set {
   justify-content: space-between;
   max-width: 70%;
