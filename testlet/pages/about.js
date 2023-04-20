@@ -76,8 +76,8 @@ const About = () => {
         <Row>
           <Col>
             <img
-              src="group-photo.jpg"
-              alt="group photo, its gotta happen"
+              src="group.png"
+              alt="group photo of team"
               className="img-fluid"
             />
           </Col>
