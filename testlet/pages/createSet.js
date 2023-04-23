@@ -80,6 +80,14 @@ function CreateSet() {
   // tie in to delete button
   // Add new handle edit function with flashcard on click
 
+  const handleEditFlashcard = (index) => {
+    setQuestion(flashcards[index].question);
+    setAnswer(flashcards[index].answer);
+    const newFlashcards = [...flashcards];
+    newFlashcards.splice(index, 1);
+    setFlashcards(newFlashcards);
+  }
+
   const handleDeleteFlashcard = (index) => {
     const newFlashcards = [...flashcards];
     newFlashcards.splice(index, 1);
@@ -207,7 +215,7 @@ function CreateSet() {
         <div
           className="flashcard"
           key={index}
-          onClick={() => handleDeleteFlashcard(index)}
+          onClick={() => handleEditFlashcard(index)}
         >
           <Flashcard question={flashcard.question} answer={flashcard.answer} />
         </div>

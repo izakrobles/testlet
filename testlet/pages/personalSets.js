@@ -24,7 +24,7 @@ function PersonalSets() {
   }, [loading, userState]);
 
   if (loading) {
-    return <Loading/>
+    return <Loading />;
   }
 
   if (error) {

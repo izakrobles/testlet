@@ -17,7 +17,6 @@ function Study() {
   const [flashcards, setFlashcards] = useState([]);
   const [key, setKey] = useState(0);
 
-
   const [raw, loading, error] = useCollection(
     collection(db, "sets", decodedUser, decodedSet)
   );
@@ -32,10 +31,7 @@ function Study() {
     const handleKeyDown = (event) => {
       if (event.keyCode === 37 && iterator > 0) {
         setIterator(iterator - 1);
-      } else if (
-        event.keyCode === 39 &&
-        iterator < flashcards.length - 1
-      ) {
+      } else if (event.keyCode === 39 && iterator < flashcards.length - 1) {
         setIterator(iterator + 1);
       }
     };
@@ -44,14 +40,14 @@ function Study() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [iterator, flashcards]);
-  
-  const handlePrev = () =>{
+
+  const handlePrev = () => {
     if (iterator > 0) {
       setIterator(iterator - 1);
     }
   };
 
-  const handleNext = () =>{
+  const handleNext = () => {
     if (iterator < flashcards.length - 1) {
       setIterator(iterator + 1);
     }
@@ -68,7 +64,7 @@ function Study() {
   const handleShuffle = () => {
     setFlashcards(shuffleArray(flashcards));
     setIterator(0);
-    setKey(key+1);
+    setKey(key + 1);
   };
 
   if (error) {
@@ -77,33 +73,43 @@ function Study() {
   }
 
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
 
-  const progress = Math.round(((iterator+1) / (flashcards.length)) * 100);
+  const progress = Math.round(((iterator + 1) / flashcards.length) * 100);
   const flashcard = flashcards[iterator];
 
   return (
     <>
       <title>{decodedSet}</title>
       <h1>{decodedSet}</h1>
-      <button onClick={handleShuffle} 
-            style={{backgroundColor: '#004aad',
-             color: 'white',
-             width: '10%',
-             borderBottomLeftRadius: 20,
-             borderTopLeftRadius: 20,
-          }}>Shuffle</button>
-      <button onClick={() => setIterator(0)} 
-            style={{backgroundColor: '#004aad',
-             color: 'white',
-             width: '10%',
-             borderBottomRightRadius: 20,
-             borderTopRightRadius: 20,
-          }}>Restart</button>
+      <button
+        onClick={handleShuffle}
+        style={{
+          backgroundColor: "#004aad",
+          color: "white",
+          width: "10%",
+          borderBottomLeftRadius: 20,
+          borderTopLeftRadius: 20,
+        }}
+      >
+        Shuffle
+      </button>
+      <button
+        onClick={() => setIterator(0)}
+        style={{
+          backgroundColor: "#004aad",
+          color: "white",
+          width: "10%",
+          borderBottomRightRadius: 20,
+          borderTopRightRadius: 20,
+        }}
+      >
+        Restart
+      </button>
       {flashcards.length > 0 && (
         <div style={{ marginTop: "1rem" }}>
-          Progress: {progress}% ({iterator+1}/{flashcards.length})
+          Progress: {progress}% ({iterator + 1}/{flashcards.length})
           <div
             style={{
               backgroundColor: "#ccc",
@@ -130,27 +136,36 @@ function Study() {
             question={flashcard.data().question}
             answer={flashcard.data().answer}
           />
-          <div style={{textAlign: 'center', marginTop: '1%'}}>
-            <button onClick={handlePrev} 
-            style={{backgroundColor: '#004aad',
-             color: 'white',
-             width: '10%',
-             borderBottomLeftRadius: 20,
-             borderTopLeftRadius: 20,
-          }}>Previous</button>
-            <button onClick={handleNext} 
-            style={{backgroundColor: '#004aad',
-             color: 'white',
-             width: '10%',
-             borderBottomRightRadius: 20,
-             borderTopRightRadius: 20,
-          }}>Next</button>
+          <div style={{ textAlign: "center", marginTop: "1%" }}>
+            <button
+              onClick={handlePrev}
+              style={{
+                backgroundColor: "#004aad",
+                color: "white",
+                width: "10%",
+                borderBottomLeftRadius: 20,
+                borderTopLeftRadius: 20,
+              }}
+            >
+              Previous
+            </button>
+            <button
+              onClick={handleNext}
+              style={{
+                backgroundColor: "#004aad",
+                color: "white",
+                width: "10%",
+                borderBottomRightRadius: 20,
+                borderTopRightRadius: 20,
+              }}
+            >
+              Next
+            </button>
           </div>
         </div>
       )}
     </>
   );
 }
-
 
 export default Study;

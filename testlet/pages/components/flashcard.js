@@ -5,6 +5,7 @@ function Flashcard(props) {
     <div className="flashcard-container">
       <div className="flashcard-question">{props.question}</div>
       <div className="flashcard-answer">{props.answer}</div>
+      <div className="spacing"></div>
     </div>
   );
 }

@@ -46,7 +46,11 @@ function SearchResults() {
 
   return (
     <div>
-      <h1>{(results.length > 0) ? (`Search Results: ${decodedSearch}`) : "No Results Found"}</h1>
+      <h1>
+        {results.length > 0
+          ? `Search Results: ${decodedSearch}`
+          : "No Results Found"}
+      </h1>
       <ul>
         {results.map((result) => (
           <li key={(result, Math.random())}>

@@ -9,21 +9,21 @@ const Home = () => {
         <title>Testlet - Home</title>
       </Head>
 
-      <Container className="my-5">
+      <Container className="my-5"> {/*Each container holds one row of the layout, brokin into multiple columns*/}
         <Row>
           <Col md={6}>
             <h1>Revolutionize Your Learning</h1>
-            <p className="lead my-4">
+            <p className="lead my-4"> {/* Styling aspects for bootstrap from external stylesheet*/}
               Testlet is the ultimate platform for students and educators alike.
               We offer the best online flashcard tool available to help you
               achieve your learning goals.
             </p>
-            <a href="createSet" className="btn btn-primary">
+            <a href="createSet" className="btn btn-primary"> {/* Links to createSet page, must log in page if not logged in */}
               Get Started
             </a>
           </Col>
           <Col md={6}>
-            <video
+            <video 
               controls={false}
               muted
               autoPlay
@@ -38,7 +38,7 @@ const Home = () => {
         </Row>
       </Container>
 
-      <Container fluid className="bg-light py-5">
+      <Container fluid className="bg-light py-5"> {/* Fluid container to extend white box to edges */}
         <Container>
           <Row>
             <Col md={4}>

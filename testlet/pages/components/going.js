@@ -24,7 +24,7 @@ function Going() {
       style={{
         height: "80%",
         width: "100%",
-        alignContent: 'center',
+        alignContent: "center",
       }}
     ></div>
   );

@@ -10,6 +10,7 @@ const About = () => {
       </Head>
 
       <Container className="my-5 text-center">
+        {/* Same external styles as homepage for consistency */}
         <Row>
           <Col>
             <h1>About Testlet</h1>
@@ -19,7 +20,7 @@ const About = () => {
               platform for students and educators alike. Our online flashcard
               tool makes it easy to create and share flashcard sets, helping you
               achieve your learning goals faster than ever before.
-              <br></br>
+              <br></br> {/* Newline formatting */}
               <br></br>
               But we're more than just a flashcard tool. We're a community of
               learners, dedicated to supporting each other on the path to
