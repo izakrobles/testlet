@@ -364,7 +364,8 @@ main {
   background: white;
 }
 
-.forms .signup {
+
+.forms .signup { /* set initial forms to invis */
   opacity: 0;
   pointer-events: none;
 }
@@ -374,32 +375,23 @@ main {
   pointer-events: none;
 }
 
-.forms.show-forgotpwd .forgotpwd {
+.forms.show-signup .signup { /* show signup form */
   opacity: 1;
   pointer-events: auto;
 }
 
-.forms.show-forgotpwd .login {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.forms.show-signup .signup {
-  opacity: 1;
-  pointer-events: auto;
-}
 
 .forms.show-signup .login {
   opacity: 0;
   pointer-events: none;
 }
 
-.forms.show-forgotpwd .form.forgotpwd {
+.forms.show-forgotpwd .forgotpwd { /* show forgotpwd form*/
   opacity: 1;
   pointer-events: auto;
 }
 
-.forms.show-forgotpwd .form.login {
+.forms.show-forgotpwd .login {
   opacity: 0;
   pointer-events: none;
 }
@@ -478,11 +470,18 @@ main {
   font-weight: 400;
   color: #232836;
 }
+
 .form .recovery-text {
   color:black;
   font-size: 14px;
   text-align: center;
   justify-content: center;
+}
+
+.form .error {
+  margin-top: 10px;
+  color: #cc0000; 
+  text-align: center;
 }
 
 .form a {
