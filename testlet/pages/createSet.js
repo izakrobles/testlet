@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Flashcard from "./components/flashcard";
 import {
   collection,
@@ -11,6 +11,9 @@ import {
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./components/loading";
+import Link from "next/link";
+import Going from "./components/going"
+
 
 function CreateSet() {
   const [popupA, showPopupA] = useState(false);
@@ -25,6 +28,8 @@ function CreateSet() {
 
   const [userState, loading, error] = useAuthState(auth);
 
+  const container = useRef(null);
+
   if (loading) {
     return <Loading />;
   }
@@ -34,7 +39,21 @@ function CreateSet() {
   }
 
   if (!userState) {
-    return <h2>You need to be signed in to view this page.</h2>;
+    return (
+      <div>
+        <Going/>
+        <div style={{justifyContent: 'center', textAlign: 'center'}}>
+    <h2>
+      You need to be signed in to view this page
+    </h2>
+    <h3>
+      <Link href="login">{"Click Here to Login!"}</Link>
+    </h3>
+    </div>
+      </div>
+
+    
+    );
   }
 
   const user = userState.displayName;

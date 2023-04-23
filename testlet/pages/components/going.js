@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
-import dat from "@/public/loading.json";
+import dat from "@/public/go.json";
 
-function Loading() {
+function Going() {
   const container = useRef(null);
 
   useEffect(() => {
@@ -22,15 +22,12 @@ function Loading() {
     <div
       ref={container}
       style={{
-        height: "100%",
+        height: "80%",
         width: "100%",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
+        alignContent: 'center',
       }}
     ></div>
   );
 }
 
-export default Loading;
+export default Going;

@@ -3,6 +3,7 @@ import { auth} from "../firebase/clientApp";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signInWithRedirect, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail  } from "firebase/auth";
+import Loading from "./components/loading";
 
 const google = new GoogleAuthProvider();
 const handleGoogle = () => {
@@ -105,7 +106,7 @@ function Login() {
     };
 
     if (loading) {
-    return <p>Loading...</p>;
+    return <Loading/>;
     }
 
     if (error) {
