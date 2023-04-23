@@ -1,11 +1,10 @@
 import { React, useState, useRef } from "react";
-import { auth } from "../firebase/clientApp"
-import { GoogleAuthProvider, EmailAuthCredential } from "firebase/auth";
+import { auth} from "../firebase/clientApp";
+import { GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth, signInWithRedirect, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithRedirect, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail  } from "firebase/auth";
 
 const google = new GoogleAuthProvider();
-const pasUser = getAuth();
 const handleGoogle = () => {
     signInWithRedirect(auth, google)
 };  
@@ -14,9 +13,9 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userState, loading, error] = useAuthState(auth);
-    const formsRef = useRef(null);
+    const [name, setName] = useState('');
     const pwShowHideRef = useRef(null);
-    const linksRef = useRef(null);
+    
 
     if (userState) {
         window.location.href = "/"
@@ -37,13 +36,27 @@ function Login() {
         });
       };
 
-    const handleForgotPwdLink = (e) => {
+      const handleLogin = async (e) => {
         e.preventDefault();
-        const container = document.querySelector('.container');
-        if (container) {
-          container.classList.toggle('show-forgotpwd');
+        const loginForm = document.querySelector('#login-form');
+        if (!loginForm) {
+            return;
         }
-    };  
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then(async (cred) => {
+            window.location.href
+            loginForm.querySelector('.error').innerHTML = '';
+        }).catch(err => {
+            loginForm.querySelector('.error').innerHTML = err.message;
+        });
+        
+    };
+
+    const handleRefresh = (e) => {
+        e.preventDefault();
+        window.location.href = "/login";
+    }
 
     const handleRegisterLink = (e) => {
         e.preventDefault();
@@ -53,27 +66,44 @@ function Login() {
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleForgotPwdLink = (e) => {
         e.preventDefault();
-        try {
-        await signInWithEmailAndPassword(auth, email, password); // update this line
-        } catch (error) {
-        console.log(error.message);
+        const container = document.querySelector('.container');
+        if (container) {
+          container.classList.toggle('show-forgotpwd');
         }
     };
 
-    function changeText() {
-        const recoveryText = document.querySelector('.recovery-text');
-        recoveryText.textContent = "We won't send you anything. You lost your account.";
-    }
+    const handleRegister = async (e) => {
+        e.preventDefault()
+        const signupForm = document.querySelector('#signup-form');
+        if (!signupForm) {
+            return;
+        }
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+        const email = signupForm['signup-email'].value;
+        const password = signupForm['signup-pwd'].value;
+        const name = signupForm['signup-name'].value;
+        const confirmPassword = signupForm['confirm-pwd'].value;
+
+        if (password !== confirmPassword) {
+            signupForm.querySelector('.error').innerHTML = 'Entered passwords are not the same';
+            return;
+        };
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(async (cred) => {
+          console.log(cred);
+          updateProfile(auth.currentUser, {
+            displayName: name
+          });
+          signupForm.querySelector('.error').innerHTML = '';
+        }).catch(err => {
+            signupForm.querySelector('.error').innerHTML = err.message;
+        });
+
     };
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
     if (loading) {
     return <p>Loading...</p>;
     }
@@ -90,16 +120,17 @@ function Login() {
 
             <body class ="my-login">
                 <section id="forms-section" class="container forms">
+
                     <div class="form login">
                         <div class="form-content">
                             <header class="form-header">Login</header>
-                            <form action="#">
+                            <form id="login-form" action="#">
                                 <div class="field input-field">
-                                    <input type="email" placeholder="Email" class="input"></input>
+                                    <input type="email" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} />
                                 </div>
 
                                 <div class="field input-field">
-                                    <input type="password" placeholder="Password" class="password"></input>
+                                    <input type="password" placeholder="Password" value={password} required onChange={(e) => setPassword(e.target.value)} />
                                     <i class="bx bx-hide eye-icon" ref={pwShowHideRef} onClick={handleShowHideClick}></i>
                                 </div>
 
@@ -108,11 +139,13 @@ function Login() {
                                 </div>
 
                                 <div class="field button-field">
-                                    <button>Login</button>
+                                    <button onClick={handleLogin}>Login</button>
                                 </div>
 
+                                <p class="error pink-text center-align"></p>
+
                                 <div class="form-link">
-                                    <span> Don't have an account?</span><a href="#" onClick={handleRegisterLink}> Register Here</a>
+                                    <span> Don't have an account? </span><a href="#" onClick={handleRegisterLink}>Register Here</a>
                                 </div>
 
                             </form>
@@ -131,27 +164,34 @@ function Login() {
                     <div class="form signup">
                         <div class="form-content">
                             <header class="form-header">Signup</header>
-                            <form action="#">
+                            <form id="signup-form" action="#">
+
                                 <div class="field input-field">
-                                    <input type="email" placeholder="Email" class="input"></input>
+                                    <input type="text" placeholder="Name" id="signup-name" value={name} onChange={e => setName(e.target.value)} />
                                 </div>
 
                                 <div class="field input-field">
-                                    <input type="password" placeholder="Password" class="password"></input>
+                                    <input type="email" placeholder="Email" id="signup-email" class="input" required></input>
+                                </div>
+
+                                <div class="field input-field">
+                                    <input type="password" placeholder="Password" id="signup-pwd" class="password" required></input>
                                     <i class="bx bx-hide eye-icon" ref={pwShowHideRef} onClick={handleShowHideClick}></i>
                                 </div>
 
                                 <div class="field input-field">
-                                    <input type="password" placeholder="Password" class="password"></input>
+                                    <input type="password" placeholder="Password" id="confirm-pwd" class="password" required></input>
                                     <i class="bx bx-hide eye-icon" ref={pwShowHideRef} onClick={handleShowHideClick}></i>
                                 </div>
 
                                 <div class="field button-field">
-                                    <button>Sign up</button>
+                                    <button onClick={handleRegister}>Sign up</button>
                                 </div>
 
+                                <p class="error pink-text center-align"></p>
+
                                 <div class="form-link">
-                                    <span> Already have an account?</span><a href="#" class="link login-link" ref={linksRef} onClick={handleRegisterLink}> Login Here</a>
+                                    <span> Already have an account? </span><a href="#" onClick={handleRegisterLink}>Login Here</a>
                                 </div>
 
                             </form>
@@ -170,21 +210,13 @@ function Login() {
                     <div class="form forgotpwd">
                         <div class="form-content">
                             <header class="form-header">Password Recovery</header>
-                            <form action="#">
+                            <form id="recover-form" action="#">
                                 <div>
-                                    <h1 class="recovery-text"> Enter your email to recover your email.</h1>
-                                </div>
-
-                                <div class="field input-field">
-                                    <input type="email" placeholder="Email" class="input"></input>
+                                    <h1 class="recovery-text"> You forgot your password? We don't know it either. Make a new account with a different email or Sign in with Google. </h1>
                                 </div>
 
                                 <div class="field button-field">
-                                    <button onclick="changeText()">Submit</button>
-                                </div>
-
-                                <div class="form-link">
-                                    <span> Already have an account?</span><a href="#" class="link login-link" ref={linksRef} onClick={handleForgotPwdLink}> Login Here</a>
+                                    <button onClick={handleRefresh}>Return to Login</button>
                                 </div>
 
                             </form>
