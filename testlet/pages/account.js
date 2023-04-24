@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { auth } from "../firebase/clientApp";
-import React, { useState } from "react";
+import { auth, db } from "../firebase/clientApp";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import {
   Container,
@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap";
 import classnames from "classnames";
 import { Tab, Tabs } from "react-bootstrap";
+import { doc, getDoc } from "firebase/firestore";
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState("1");
@@ -29,7 +30,22 @@ const Account = () => {
   };
 
   const local = auth.currentUser;
-  const username = local && local.email.split("@")[0];
+  const username = local && local.displayName;
+
+  const [recentSets, setRecentSets] = useState([]);
+
+  useEffect(() => {
+    if (username) {
+      const getRecentSets = async () => {
+        const documentSnapshot = await getDoc(doc(db, "sets", username));
+        if (documentSnapshot.exists()) {
+          const userData = documentSnapshot.data();
+          setRecentSets(userData.UserSets.slice(0, 4));
+        }
+      };
+      getRecentSets();
+    }
+  }, [username]);
 
   return (
     <>
@@ -37,7 +53,12 @@ const Account = () => {
         <Container className="my-5">
           <Row>
             <Col md={2}>
-              {local && <img src={local.photoURL || "/nopfp.png"} className="profile-pic" />}
+              {local && (
+                <img
+                  src={local.photoURL || "/nopfp.png"}
+                  className="profile-pic"
+                />
+              )}
             </Col>
             <Col md={6}>
               <h2>{username}</h2>
@@ -59,10 +80,23 @@ const Account = () => {
             </Tab>
             <Tab eventKey="2" title="Recent Sets">
               <h4>Recent Sets</h4>
-              <p>Most Recent Study set</p>
-              <p>2nd Most Recent Study Set</p>
-              <p>3rd Most Recent Study Set</p>
-              <p>4th Most Recent Study Set</p>
+              {recentSets.length > 0 ? (
+                recentSets.map((setName, index) => (
+                  <div key={index}>
+                    <Link
+                      href={{
+                        pathname: "/viewSet",
+                        query: { user: username, set: setName },
+                      }}
+                    >
+                      <p>{setName}</p>
+                    </Link>
+                    <p>&nbsp;</p>
+                  </div>
+                ))
+              ) : (
+                <p>No recent sets found.</p>
+              )}
             </Tab>
             <Tab eventKey="3" title="Stats">
               <h4>Streak: Coming Soon!</h4>
