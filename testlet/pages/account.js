@@ -55,7 +55,7 @@ const Account = () => {
               <h4>Account Information</h4>
               <p>Name: {local?.displayName}</p>
               <p>Email: {local?.email}</p>
-              <p>Account Created: Day-Month-Year</p>
+              <p>Account Created: Coming Soon!</p>
             </Tab>
             <Tab eventKey="2" title="Recent Sets">
               <h4>Recent Sets</h4>
@@ -65,11 +65,12 @@ const Account = () => {
               <p>4th Most Recent Study Set</p>
             </Tab>
             <Tab eventKey="3" title="Stats">
-              <h4>Streak: 400 Days</h4>
-              <p>List of Achievements</p>
+              <h4>Streak: Coming Soon!</h4>
+              <p>List of Achievements: Coming Soon!</p>
             </Tab>
             <Tab eventKey="4" title="Settings">
               <h4>Settings</h4>
+              <p>Interaction: Maybe Coming Soon!</p>
               <p>Privacy = None</p>
               <p>User Data = Sold</p>
             </Tab>
