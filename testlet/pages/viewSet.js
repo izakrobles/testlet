@@ -41,7 +41,7 @@ function ViewSet() {
       {flashcards && (
         <>
           {flashcards.docs.map((flashcard, index) => (
-            <div className="flashcard" key={index}>
+            <div className="flashcard-container-outer">
               <Flashcard
                 question={flashcard.data().question}
                 answer={flashcard.data().answer}
