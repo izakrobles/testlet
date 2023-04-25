@@ -85,25 +85,13 @@ function Study() {
       <h1>{decodedSet}</h1>
       <button
         onClick={handleShuffle}
-        style={{
-          backgroundColor: "#004aad",
-          color: "white",
-          width: "10%",
-          borderBottomLeftRadius: 20,
-          borderTopLeftRadius: 20,
-        }}
+        className="button-pair-left"
       >
         Shuffle
       </button>
       <button
         onClick={() => setIterator(0)}
-        style={{
-          backgroundColor: "#004aad",
-          color: "white",
-          width: "10%",
-          borderBottomRightRadius: 20,
-          borderTopRightRadius: 20,
-        }}
+        className='button-pair-right'
       >
         Restart
       </button>
@@ -139,25 +127,13 @@ function Study() {
           <div style={{ textAlign: "center", marginTop: "1%" }}>
             <button
               onClick={handlePrev}
-              style={{
-                backgroundColor: "#004aad",
-                color: "white",
-                width: "10%",
-                borderBottomLeftRadius: 20,
-                borderTopLeftRadius: 20,
-              }}
+              className="button-pair-left"
             >
               Previous
             </button>
             <button
               onClick={handleNext}
-              style={{
-                backgroundColor: "#004aad",
-                color: "white",
-                width: "10%",
-                borderBottomRightRadius: 20,
-                borderTopRightRadius: 20,
-              }}
+              className="button-pair-right"
             >
               Next
             </button>

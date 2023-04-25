@@ -1,30 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Flashcard from "./components/flashcard";
-import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, updateDoc, addDoc, getDoc, setDoc, query, getDocs, writeBatch } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./components/loading";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Going from "./components/going";
 
-function CreateSet() {
+function EditSet() {
   const [popupA, showPopupA] = useState(false);
   const [popupB, showPopupB] = useState(false);
   const [created, setCreated] = useState(false);
   const [flashcards, setFlashcards] = useState([]);
   const [title, setTitle] = useState("");
+  const [oldTitle, setOldTitle] = useState("");
   const [prevTitle, setPrevTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [saving, setSaving] = useState(false);
+  const [first, setFirst] = useState(true);
+
+  const router = useRouter();
+  const { user, set } = router.query;
+
+  const decodedSet = decodeURIComponent(set);
+  const decodedUser = decodeURIComponent(user);
+
+  const [raw, loadingB, errorB] = useCollection(
+    collection(db, "sets", decodedUser, decodedSet)
+  );
+
+  useEffect(() => {
+    if (raw && first) {
+        let flashInput = [];
+        for(let i=0;i<raw.docs.length;i++){
+            flashInput.push(raw.docs[i].data());
+        }
+        setTitle(decodedSet);
+        setOldTitle(decodedSet);
+        setFlashcards(flashInput);
+        setFirst(false);
+    }
+  }, [raw]);
+  
 
   const [userState, loading, error] = useAuthState(auth);
 
-  if (loading) {
+  if (loading|loadingB) {
     return <Loading />;
   }
 
-  if (error) {
+  if (error|errorB) {
     return <h2>Error: {error}</h2>;
   }
 
@@ -42,7 +70,18 @@ function CreateSet() {
     );
   }
 
-  const user = userState.displayName;
+  const deleteAllDocumentsInCollection = async (collectionRef) => {
+    const q = query(collectionRef);
+    const querySnapshot = await getDocs(q);
+    const batch = writeBatch(db);
+  
+    querySnapshot.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+  
+    await batch.commit();
+    console.log('All documents in the collection have been deleted.');
+  };
 
   const handleAddFlashcard = () => {
     if (!answer | !question) {
@@ -107,6 +146,12 @@ function CreateSet() {
       return;
     }
     setSaving(true);
+
+    // Removing the old set before saving the new one
+    const oldDocumentRef = collection(db, "sets", user, oldTitle);
+    await deleteAllDocumentsInCollection(oldDocumentRef);
+
+    // Adding the set to the database
     const collectionRef = collection(db, "sets", user, title);
     for (const flashcard of flashcards) {
       await addDoc(collectionRef, {
@@ -115,14 +160,16 @@ function CreateSet() {
       });
     }
 
+    // Removing the old title and adding the new title
     const docRef = doc(db, "sets", user);
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
-      const userData = docSnapshot.data();
-      const updatedSets = [...userData.UserSets, title];
-      await updateDoc(docRef, { UserSets: updatedSets });
+    const userData = docSnapshot.data();
+    const updatedSets = userData.UserSets.filter(set => set !== oldTitle); // Remove the oldTitle
+    updatedSets.push(title); // Add the new title
+    await updateDoc(docRef, { UserSets: updatedSets });
     } else {
-      await setDoc(docRef, { UserSets: [title] });
+    await setDoc(docRef, { UserSets: [title] });
     }
     setPrevTitle(title);
     setTitle("");
@@ -154,7 +201,7 @@ function CreateSet() {
       )}
       {created && (
         <div className="navigateNew" onClick={() => handleGoToNewSet()}>
-          You just created a new set. If you would like to see it click here!
+          You just updated you set. If you would like to see it click here!
         </div>
       )}
       <form className="new-set">
@@ -167,7 +214,7 @@ function CreateSet() {
           onChange={handleSetTitle}
         ></input>
         <button className="save-button" onClick={handleSaveSetButton}>
-          Save New Set
+          Update Set
         </button>
       </form>
       <div className="create-sets">
@@ -193,12 +240,12 @@ function CreateSet() {
       </div>
 
       {flashcards.map((flashcard, index) => (
-        <div key={index} >
+        <div key={index}>
           <div className="flashcard-container-outer">
             <div onClick={() => handleEditFlashcard(index)} style={{width:'100%'}}>
             <Flashcard
-              question={flashcard.question}
-              answer={flashcard.answer}
+                question={flashcard.question}
+                answer={flashcard.answer}
             />
             </div>
             <button
@@ -214,4 +261,4 @@ function CreateSet() {
   );
 }
 
-export default CreateSet;
+export default EditSet;
