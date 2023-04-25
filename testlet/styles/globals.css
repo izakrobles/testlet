@@ -378,6 +378,8 @@ main {
   align-items: center;
   justify-content: center;
   column-gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .form {
