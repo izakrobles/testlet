@@ -2,6 +2,7 @@ import Link from "next/link";
 import { auth, db } from "../firebase/clientApp";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "./components/loading";
 import Head from "next/head";
 import {
   Container,
@@ -56,7 +57,7 @@ const Account = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading/>
       ) : (
       <div>
         <Container className="my-5">
