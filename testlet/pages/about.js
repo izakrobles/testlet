@@ -85,7 +85,7 @@ const About = () => {
           <Col>
             <h2>Our Team</h2>
             <p className="our-team">
-              We're a group of passionate educators and developers who believe
+              We're a group of passionate learners and developers who believe
               in making learning accessible to everyone. Our team members have
               extensive experience in computer science, software development,
               and education. We are constantly learning and growing as we work

@@ -227,6 +227,21 @@ main {
   background-color: #002b6d;
 }
 
+.delete-card-button {
+  position: absolute;
+  right: 0;
+  margin-right: 0.5%;
+  font-size: 16px;
+  padding: 0.5em 1em;
+  border-radius: 50%;
+  background-color: #004aad;
+  color: white;
+}
+
+.delete-card-button:hover {
+  background-color: #002b6d;
+}
+
 .create-sets .question{
   background-color: white;
   color: black;
@@ -281,6 +296,10 @@ main {
   font-size: 24px;
   border-left: 2px solid #ccc;
   padding-left: 7px;
+}
+
+.btnwidth10 {
+  min-width: 10%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -573,19 +592,4 @@ a.google span {
   border-bottom: 2px solid;
 }
 
-/* Set the background color of the tab content to match the page background
-.tab-content {
-  background-color: #f5f5f5;
-  padding: 20px;
-}
-*/
 
-/* Footer component */
-/*
-.foot {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-*/

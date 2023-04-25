@@ -23,7 +23,7 @@ const Home = () => {
             </a>
           </Col>
           <Col md={6}>
-            <video 
+            <video
               controls={false}
               muted
               autoPlay
@@ -95,14 +95,26 @@ const Home = () => {
           </Col>
           <Col md={6}>
             <h2>Features</h2>
-            <ul className="list-unstyled">
+            <ul className="mylist list-unstyled">
               <li>
-                <i className="bi bi-check2 text-primary"></i> Create quizzes*
-                and flashcards
+                <i className="bi bi-check2 text-primary"></i> Create animated
+                flashcard sets
+              </li>
+              <li>
+                <i className="bi bi-check2 text-primary"></i> Shuffle flashcards
+                within flashcard sets
+              </li>
+              <li>
+                <i className="bi bi-check2 text-primary"></i> Track progress
+                within study sets
+              </li>
+              <li>
+                <i className="bi bi-check2 text-primary"></i> Reset progress
+                within study sets
               </li>
               <li>
                 <i className="bi bi-check2 text-primary"></i> Share study
-                materials with classmates*
+                materials with classmates
               </li>
               <li>
                 <i className="bi bi-check2 text-primary"></i> Store and access
@@ -110,7 +122,7 @@ const Home = () => {
               </li>
               <li>
                 <i className="bi bi-check2 text-primary"></i> Additional
-                feature...
+                features to be added soon . . .
               </li>
             </ul>
           </Col>

@@ -12,8 +12,7 @@ import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./components/loading";
 import Link from "next/link";
-import Going from "./components/going"
-
+import Going from "./components/going";
 
 function CreateSet() {
   const [popupA, showPopupA] = useState(false);
@@ -41,18 +40,14 @@ function CreateSet() {
   if (!userState) {
     return (
       <div>
-        <Going/>
-        <div style={{justifyContent: 'center', textAlign: 'center'}}>
-    <h2>
-      You need to be signed in to view this page
-    </h2>
-    <h3>
-      <Link href="login">{"Click Here to Login!"}</Link>
-    </h3>
-    </div>
+        <Going />
+        <div style={{ justifyContent: "center", textAlign: "center" }}>
+          <h2>You need to be signed in to view this page</h2>
+          <h3>
+            <Link href="login">{"Click Here to Login!"}</Link>
+          </h3>
+        </div>
       </div>
-
-    
     );
   }
 
@@ -86,7 +81,7 @@ function CreateSet() {
     const newFlashcards = [...flashcards];
     newFlashcards.splice(index, 1);
     setFlashcards(newFlashcards);
-  }
+  };
 
   const handleDeleteFlashcard = (index) => {
     const newFlashcards = [...flashcards];
@@ -117,7 +112,7 @@ function CreateSet() {
 
   const handleSaveSetButton = async (event) => {
     event.preventDefault();
-    if(title === '' || flashcards.length < 1){
+    if (title === "" || flashcards.length < 1) {
       showPopupB(true);
       setTimeout(() => {
         showPopupB(false);
@@ -153,7 +148,6 @@ function CreateSet() {
     setTimeout(() => {
       setCreated(false);
     }, 10000);
-    
   };
 
   return saving ? (
@@ -212,12 +206,20 @@ function CreateSet() {
       </div>
 
       {flashcards.map((flashcard, index) => (
-        <div
-          className="flashcard"
-          key={index}
-          onClick={() => handleEditFlashcard(index)}
-        >
-          <Flashcard question={flashcard.question} answer={flashcard.answer} />
+        <div>
+          <div
+            className="flashcard"
+            key={index}
+            onClick={() => handleEditFlashcard(index)}
+          >
+            <Flashcard
+              question={flashcard.question}
+              answer={flashcard.answer}
+            />
+          </div>
+          <button className="delete-card-button" onClick={handleDeleteFlashcard}>
+            -
+          </button>
         </div>
       ))}
     </>
