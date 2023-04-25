@@ -159,6 +159,7 @@ main {
 
 /* Create Sets Page */
 .navigateNew {
+  text-align: center;
   align-self: center;
   background-color: red;
 }
@@ -221,10 +222,6 @@ main {
   color: white;
 }
 
-.create-set-button:hover {
-  background-color: #002b6d;
-}
-
 .delete-card-button {
   font-size: 16px;
   padding: 0.5em 1em;
@@ -233,7 +230,11 @@ main {
   color: white;
 }
 
-.delete-card-button:hover {
+.button-single:hover,
+.create-set-button:hover,
+.delete-card-button:hover,
+.button-pair-left:hover,
+.button-pair-right:hover {
   background-color: #002b6d;
 }
 
@@ -252,6 +253,29 @@ main {
   border-radius: 10px;
   margin-right: 40px;
   margin-left: 10px;
+}
+
+.button-pair-left {
+  background-color: #004aad;
+  color: white;
+  width: 10%;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.button-pair-right {
+  background-color: #004aad;
+  color: white;
+  width: 10%;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.button-single {
+  background-color: #004aad;
+  color: white;
+  width: 10%;
+  border-radius: 20px;
 }
 
 .popup {
