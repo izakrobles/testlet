@@ -12,6 +12,7 @@ import {
 import Loading from "./components/loading";
 
 const google = new GoogleAuthProvider();
+google.addScope("https://www.googleapis.com/auth/userinfo.profile");
 const handleGoogle = () => {
   signInWithRedirect(auth, google);
 };
