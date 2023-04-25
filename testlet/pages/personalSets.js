@@ -4,6 +4,7 @@ import { db, auth } from "@/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./components/loading";
+import { Container, Col, Card } from "react-bootstrap";
 
 function PersonalSets() {
   const [userState, loading, error] = useAuthState(auth);
@@ -38,22 +39,36 @@ function PersonalSets() {
   return (
     <>
       <title>Your Sets</title>
-      <h1>Your Sets:</h1>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      {sets.map((setName, index) => (
-        <div key={index}>
-          <Link
-            href={{
-              pathname: "/viewSet",
-              query: { user: userState.displayName, set: setName },
-            }}
-          >
-            <h2>{setName}</h2>
-          </Link>
-          <p>&nbsp;</p>
-        </div>
-      ))}
+      <Container className="my-5">
+        <h1>Your Sets</h1>
+        <p>&nbsp;</p>
+        <p>Here you can view your own personal study sets you have created!</p>
+        <hr></hr>
+        <p>&nbsp;</p>
+      </Container>
+      <Container className="my-5">
+        <Col>
+          {sets.map((setName, index) => (
+            <div key={index}>
+              <Card 
+                bg='primary'
+                style={{width: '50rem'}}
+              >
+                <Link
+                  href={{
+                    pathname: "/viewSet",
+                    query: { user: userState.displayName, set: setName },
+                  }}
+                >
+                  <Card.Body>{setName}</Card.Body>
+                  {/* <Card.Subtitle>{flashcards.length}</Card.Subtitle> */}
+                </Link>
+              </Card>
+              <p>&nbsp;</p>
+            </div>
+          ))}
+        </Col>
+      </Container>
     </>
   );
 }
