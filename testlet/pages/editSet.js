@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import Flashcard from "./components/flashcard";
-import { collection, doc, updateDoc, addDoc, getDoc, setDoc, query, getDocs, writeBatch } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  updateDoc,
+  addDoc,
+  getDoc,
+  setDoc,
+  query,
+  getDocs,
+  writeBatch,
+} from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -34,25 +44,24 @@ function EditSet() {
 
   useEffect(() => {
     if (raw && first) {
-        let flashInput = [];
-        for(let i=0;i<raw.docs.length;i++){
-            flashInput.push(raw.docs[i].data());
-        }
-        setTitle(decodedSet);
-        setOldTitle(decodedSet);
-        setFlashcards(flashInput);
-        setFirst(false);
+      let flashInput = [];
+      for (let i = 0; i < raw.docs.length; i++) {
+        flashInput.push(raw.docs[i].data());
+      }
+      setTitle(decodedSet);
+      setOldTitle(decodedSet);
+      setFlashcards(flashInput);
+      setFirst(false);
     }
   }, [raw]);
-  
 
   const [userState, loading, error] = useAuthState(auth);
 
-  if (loading|loadingB) {
+  if (loading | loadingB) {
     return <Loading />;
   }
 
-  if (error|errorB) {
+  if (error | errorB) {
     return <h2>Error: {error}</h2>;
   }
 
@@ -74,13 +83,13 @@ function EditSet() {
     const q = query(collectionRef);
     const querySnapshot = await getDocs(q);
     const batch = writeBatch(db);
-  
+
     querySnapshot.forEach((doc) => {
       batch.delete(doc.ref);
     });
-  
+
     await batch.commit();
-    console.log('All documents in the collection have been deleted.');
+    console.log("All documents in the collection have been deleted.");
   };
 
   const handleAddFlashcard = () => {
@@ -164,12 +173,12 @@ function EditSet() {
     const docRef = doc(db, "sets", user);
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
-    const userData = docSnapshot.data();
-    const updatedSets = userData.UserSets.filter(set => set !== oldTitle); // Remove the oldTitle
-    updatedSets.push(title); // Add the new title
-    await updateDoc(docRef, { UserSets: updatedSets });
+      const userData = docSnapshot.data();
+      const updatedSets = userData.UserSets.filter((set) => set !== oldTitle); // Remove the oldTitle
+      updatedSets.push(title); // Add the new title
+      await updateDoc(docRef, { UserSets: updatedSets });
     } else {
-    await setDoc(docRef, { UserSets: [title] });
+      await setDoc(docRef, { UserSets: [title] });
     }
     setPrevTitle(title);
     setTitle("");
@@ -201,7 +210,7 @@ function EditSet() {
       )}
       {created && (
         <div className="navigateNew" onClick={() => handleGoToNewSet()}>
-          You just updated you set. If you would like to see it click here!
+          You just updated your set. If you would like to see it click here!
         </div>
       )}
       <form className="new-set">
@@ -242,11 +251,14 @@ function EditSet() {
       {flashcards.map((flashcard, index) => (
         <div key={index}>
           <div className="flashcard-container-outer">
-            <div onClick={() => handleEditFlashcard(index)} style={{width:'100%'}}>
-            <Flashcard
+            <div
+              onClick={() => handleEditFlashcard(index)}
+              style={{ width: "100%" }}
+            >
+              <Flashcard
                 question={flashcard.question}
                 answer={flashcard.answer}
-            />
+              />
             </div>
             <button
               className="delete-card-button"

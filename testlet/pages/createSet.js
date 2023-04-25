@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Flashcard from "./components/flashcard";
-import { collection, doc, updateDoc, addDoc, getDoc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  updateDoc,
+  addDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./components/loading";
@@ -193,13 +200,16 @@ function CreateSet() {
       </div>
 
       {flashcards.map((flashcard, index) => (
-        <div key={index} >
+        <div key={index}>
           <div className="flashcard-container-outer">
-            <div onClick={() => handleEditFlashcard(index)} style={{width:'100%'}}>
-            <Flashcard
-              question={flashcard.question}
-              answer={flashcard.answer}
-            />
+            <div
+              onClick={() => handleEditFlashcard(index)}
+              style={{ width: "100%" }}
+            >
+              <Flashcard
+                question={flashcard.question}
+                answer={flashcard.answer}
+              />
             </div>
             <button
               className="delete-card-button"

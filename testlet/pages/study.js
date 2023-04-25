@@ -83,16 +83,10 @@ function Study() {
     <>
       <title>{decodedSet}</title>
       <h1>{decodedSet}</h1>
-      <button
-        onClick={handleShuffle}
-        className="button-pair-left"
-      >
+      <button onClick={handleShuffle} className="button-pair-left">
         Shuffle
       </button>
-      <button
-        onClick={() => setIterator(0)}
-        className='button-pair-right'
-      >
+      <button onClick={() => setIterator(0)} className="button-pair-right">
         Restart
       </button>
       {flashcards.length > 0 && (
@@ -125,16 +119,10 @@ function Study() {
             answer={flashcard.data().answer}
           />
           <div style={{ textAlign: "center", marginTop: "1%" }}>
-            <button
-              onClick={handlePrev}
-              className="button-pair-left"
-            >
+            <button onClick={handlePrev} className="button-pair-left">
               Previous
             </button>
-            <button
-              onClick={handleNext}
-              className="button-pair-right"
-            >
+            <button onClick={handleNext} className="button-pair-right">
               Next
             </button>
           </div>

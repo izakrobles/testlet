@@ -53,23 +53,22 @@ function ViewSet() {
     <>
       <title>{decodedSet}</title>
       <h1>{decodedSet}</h1>
-      <div style={{marginBottom: '2%'}} >
-      {isCreator ? (
-        <div>
-          <button onClick={handleGoToStudy} className="button-pair-left">
+      <div style={{ marginBottom: "2%" }}>
+        {isCreator ? (
+          <div>
+            <button onClick={handleGoToStudy} className="button-pair-left">
+              Study
+            </button>
+            <button onClick={handleGoToEdit} className="button-pair-right">
+              Edit
+            </button>
+          </div>
+        ) : (
+          <button onClick={handleGoToStudy} className="button-single">
             Study
           </button>
-          <button onClick={handleGoToEdit} className="button-pair-right">
-            Edit
-          </button>
-        </div>
-      ) : (
-        <button onClick={handleGoToStudy} className="button-single">
-          Study
-        </button>
-      )}
+        )}
       </div>
-
 
       {flashcards && (
         <>
