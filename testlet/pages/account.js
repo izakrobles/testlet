@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth, db } from "../firebase/clientApp";
 import React, { useState, useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Head from "next/head";
 import {
   Container,
@@ -16,7 +17,10 @@ import { Tab, Tabs } from "react-bootstrap";
 import { doc, getDoc } from "firebase/firestore";
 
 const Account = () => {
+  const [userState, loading, error] = useAuthState(auth);
   const [activeTab, setActiveTab] = useState("1");
+  const [isLoading, setIsLoading] = useState(true);
+
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
@@ -35,20 +39,24 @@ const Account = () => {
   const [recentSets, setRecentSets] = useState([]);
 
   useEffect(() => {
-    if (username) {
+    if (!loading && username) {
       const getRecentSets = async () => {
         const documentSnapshot = await getDoc(doc(db, "sets", username));
         if (documentSnapshot.exists()) {
           const userData = documentSnapshot.data();
           setRecentSets(userData.UserSets.slice(0, 4));
         }
+        setIsLoading(false); // set isLoading to false once user data is loaded
       };
       getRecentSets();
     }
-  }, [username]);
+  }, [loading, username]);
 
   return (
     <>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
       <div>
         <Container className="my-5">
           <Row>
@@ -114,6 +122,7 @@ const Account = () => {
           </Link>
         </Container>
       </div>
+      )}
     </>
   );
 };
