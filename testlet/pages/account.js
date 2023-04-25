@@ -34,7 +34,7 @@ const Account = () => {
   };
 
   const local = auth.currentUser;
-  const username = local && local.displayName;
+  const username = local && local.email.split("@")[0];
 
   const [recentSets, setRecentSets] = useState([]);
 
