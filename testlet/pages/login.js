@@ -1,9 +1,8 @@
 import { React, useState, useRef } from "react";
-import { db, auth } from "../firebase/clientApp";
+import { auth } from "../firebase/clientApp";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signInWithRedirect, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
-import { collection, query, getDocs } from "firebase/firestore";
 import Loading from "./components/loading";
 
 const google = new GoogleAuthProvider();
@@ -94,10 +93,6 @@ function Login() {
             signupForm.querySelector(".error").innerHTML = "Entered passwords are not the same.";
             return;
         }
-
-        const q = query(collection(db, "sets"));
-        const querySnapshot = await getDocs(q);
-        const docs = querySnapshot.docs;
 
         if (docs.includes(name)) {
             signupForm.querySelector(".error").innerHTML = "Name already exists.";

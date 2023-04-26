@@ -618,6 +618,20 @@ a.google span {
   border-radius: 50%;
 }
 
+.profile-pic:hover {
+  opacity: 0.8;
+}
+
+.change-image-banner {
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
 .account-tab .nav-link.active {
   border: none;
   color: white;
@@ -735,3 +749,4 @@ a.google span {
 .modal-user-input button:hover {
   background-color: #0069d9;
 }
+

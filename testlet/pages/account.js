@@ -37,9 +37,8 @@ const Account = () => {
   
   const handlePictureSelect = async (picture) => {
     if (local) {
-      updateProfile(local, { photoURL: picture.url });
+      await updateProfile(local, { photoURL: picture.url });
       setShowModal(false); // close the modal
-      location.reload()
     }
   };
 
@@ -84,7 +83,9 @@ const Account = () => {
                     <img
                       src={local.photoURL || "/nopfp.png"}
                       className="profile-pic"
+                      title="Change profile picture"
                     />
+                    <div className="change-image-banner">Change image</div>
                   </a>
                 </div>
               )}
