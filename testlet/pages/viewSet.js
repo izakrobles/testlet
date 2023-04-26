@@ -6,7 +6,6 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { db, auth } from "@/firebase/clientApp";
 import Flashcard from "./components/flashcard";
 import Loading from "./components/loading";
-import Link from "next/link";
 
 function ViewSet() {
   const router = useRouter();

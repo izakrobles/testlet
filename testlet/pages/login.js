@@ -7,7 +7,6 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
-  sendPasswordResetEmail,
 } from "firebase/auth";
 import Loading from "./components/loading";
 

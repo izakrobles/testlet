@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db, auth } from "@/firebase/clientApp";
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from "@/firebase/clientApp";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Loading from "./components/loading";
