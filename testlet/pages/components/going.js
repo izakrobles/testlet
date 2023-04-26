@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
-import dat from "@/public/go.json";
+import dat from "@/public/go.json"; {/* Data shorthand used by lottie */}
 
 function Going() {
   const container = useRef(null);

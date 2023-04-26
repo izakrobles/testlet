@@ -71,7 +71,7 @@ const Account = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
       <div>
         <Container className="my-5">

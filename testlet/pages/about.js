@@ -9,8 +9,7 @@ const About = () => {
         <title>Testlet - About</title>
       </Head>
 
-      <Container className="my-5 text-center">
-        {/* Same external styles as homepage for consistency */}
+      <Container className="my-5 text-center"> {/* Same external styles as homepage for consistency */}
         <Row>
           <Col>
             <h1>About Testlet</h1>

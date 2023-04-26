@@ -50,10 +50,7 @@ function PersonalSets() {
         <Col>
           {sets.map((setName, index) => (
             <div key={index}>
-              <Card 
-                bg='primary'
-                style={{width: '50rem'}}
-              >
+              <Card bg="primary" style={{ width: "50rem" }}>
                 <Link
                   href={{
                     pathname: "/viewSet",
