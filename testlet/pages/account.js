@@ -9,6 +9,7 @@ import classnames from "classnames";
 import { Tab, Tabs } from "react-bootstrap";
 import { doc, getDoc } from "firebase/firestore";
 import { profilePictures, imageMap } from "./components/profilePictures";
+import Loading from "./components/loading";
 
 const Account = () => {
   const [userState, loading, error] = useAuthState(auth);
