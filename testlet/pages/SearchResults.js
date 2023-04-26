@@ -4,6 +4,7 @@ import { db } from "@/firebase/clientApp";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Loading from "./components/loading";
+import { Card, Container } from "react-bootstrap";
 
 function SearchResults() {
   const router = useRouter();
@@ -45,12 +46,14 @@ function SearchResults() {
   }
 
   return (
-    <div>
+    <Container className="my-5">
       <h1>
         {results.length > 0
           ? `Search Results: ${decodedSearch}`
           : "No Results Found"}
       </h1>
+      <p>&nbsp;</p>
+      <hr></hr>
       <ul>
         {results.map((result) => (
           <li key={(result, Math.random())}>
@@ -60,14 +63,17 @@ function SearchResults() {
                 (set) =>
                   set.toLowerCase().includes(decodedSearch.toLowerCase()) && (
                     <li key={(set.collectionName, Math.random())}>
+                      <Card bg="primary" style={{ width: "50rem" }}>
                       <Link
                         href={{
                           pathname: "/viewSet",
                           query: { user: result.collectionName, set: set },
                         }}
                       >
-                        <h5>{set}</h5>
+                        <Card.Body>{set}</Card.Body>
                       </Link>
+                      </Card>
+                      <p>&nbsp;</p>
                     </li>
                   )
               )}
@@ -75,7 +81,7 @@ function SearchResults() {
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }
 
