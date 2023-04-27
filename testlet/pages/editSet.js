@@ -111,6 +111,10 @@ function EditSet() {
   };
 
   const handleEditFlashcard = (index) => {
+    
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
     setQuestion(flashcards[index].question);
     setAnswer(flashcards[index].answer);
     const newFlashcards = [...flashcards];
@@ -180,17 +184,13 @@ function EditSet() {
     } else {
       await setDoc(docRef, { UserSets: [title] });
     }
-    setPrevTitle(title);
-    setTitle("");
-    setAnswer("");
-    setQuestion("");
-    setFlashcards([]);
-    setSaving(false);
-
     setCreated(true);
     setTimeout(() => {
       setCreated(false);
-    }, 15000);
+    }, 12500);
+
+    setPrevTitle(title);
+    setSaving(false);
   };
 
   return saving ? (
@@ -210,7 +210,7 @@ function EditSet() {
       )}
       {created && (
         <div className="navigateNew" onClick={() => handleGoToNewSet()}>
-          You just updated your set. If you would like to see it click here!
+          Your set has been saved! Click here to view it!
         </div>
       )}
       <form className="new-set">
