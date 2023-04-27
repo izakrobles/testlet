@@ -4,15 +4,14 @@ import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Modal } from "react-bootstrap";
 import { updateProfile } from "firebase/auth";
-import {Container, Row, Col, Nav, TabContent, TabPane, Button } from "react-bootstrap";
-import classnames from "classnames";
+import {Container, Row, Col, Button } from "react-bootstrap";
 import { Tab, Tabs } from "react-bootstrap";
 import { doc, getDoc } from "firebase/firestore";
-import { profilePictures, imageMap } from "./components/profilePictures";
+import { imageMap } from "./components/profilePictures";
 import Loading from "./components/loading";
 
 const Account = () => {
-  const [userState, loading, error] = useAuthState(auth);
+  const [userState, loading ] = useAuthState(auth);
   const [activeTab, setActiveTab] = useState("1");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -148,7 +147,9 @@ const Account = () => {
               <Modal.Title>Select Profile Picture</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              {profilePictures.map((picture) => (
+            {Object.keys(imageMap).map((key) => {
+              const picture = imageMap[key];
+              return (
                 <img
                   key={picture.id}
                   src={picture.url}
@@ -156,7 +157,8 @@ const Account = () => {
                   className="modal-picture"
                   onClick={() => handlePictureSelect(picture)}
                 />
-              ))}
+              );
+            })}
               <div className="modal-user-input">
                 <div>
                   <h4 class="pfpURL">Enter an image URL for your pfp:</h4>
