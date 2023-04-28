@@ -1,26 +1,32 @@
+image: cypress/base:14.17.0
 
-test:
-  # Use the official Node.js Docker image
-  image: node:latest
+stages:
+  - build
+  - test
 
-  # Define cache paths for faster builds
-  cache:
-    paths:
-      - node_modules/
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .next/cache/
+    - ~/.cache/Cypress/
 
-  # Define services for the tests to use
-  services:
-    - name: firebase
-      alias: firebase
-      entrypoint:
-        - /usr/bin/entrypoint
-        - -r
-        - "us-central1"
-        - --token
-        - "supersecret"
+variables:
+  NEXT_TELEMETRY_DISABLED: '1'
 
-  # Define the script to run the tests
+before_script:
+  - npm ci
+
+build:
+  stage: build
   script:
-    - npm install
     - npm run build
 
+test:
+  stage: test
+  script:
+    - npm run test:ci
+  artifacts:
+    paths:
+      - cypress/videos/
+      - cypress/screenshots/
