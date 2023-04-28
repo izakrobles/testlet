@@ -15,7 +15,7 @@ variables:
   NEXT_TELEMETRY_DISABLED: '1'
 
 before_script:
-  - npm ci
+  - npm ci --legacy-peer-deps
 
 build:
   stage: build
