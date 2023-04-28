@@ -15,6 +15,7 @@ variables:
   NEXT_TELEMETRY_DISABLED: '1'
 
 before_script:
+  - cd ./testlet
   - npm install
 
 build:
