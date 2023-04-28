@@ -1,32 +1,31 @@
 image: mcr.microsoft.com/windows/servercore:ltsc2019
 
 stages:
-  - build
   - test
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
-    - .next/cache/
-    - ~/.cache/Cypress/
-
 variables:
-  NEXT_TELEMETRY_DISABLED: '1'
-
-before_script:
-  - powershell -Command "npm ci"
-
-build:
-  stage: build
-  script:
-    - npm run build
+  CI_DEBUG_TRACE: "true"
 
 test:
   stage: test
   script:
-    - powershell -Command "npm run test:ci"
+    - npm ci
+    - npm run test:ci
   artifacts:
     paths:
       - cypress/videos/
       - cypress/screenshots/
+
+windows:
+  stage: test
+  script:
+    - npm ci
+    - npm run test:ci
+  artifacts:
+    paths:
+      - cypress/videos/
+      - cypress/screenshots/
+  tags:
+    - windows
+  except:
+    - triggers
