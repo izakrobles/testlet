@@ -16,7 +16,7 @@ variables:
 
 before_script:
   - cd ./testlet
-  - npm install
+  - npm ci
 
 build:
   stage: build
