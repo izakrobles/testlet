@@ -111,8 +111,7 @@ function EditSet() {
   };
 
   const handleEditFlashcard = (index) => {
-    
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.scrollTo(0, 0);
     }
     setQuestion(flashcards[index].question);

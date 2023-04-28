@@ -7,7 +7,7 @@ const montserrat = Montserrat({
   weight: "600",
 });
 
-export default function Layout({ children }) {
+export default function Layout({ children }) { {/* Formats every page to have navbar at top, footer at bottom, contents middle */}
   return (
     <main className={montserrat.className}>
       <Navbar />

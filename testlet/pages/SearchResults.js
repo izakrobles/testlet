@@ -64,14 +64,14 @@ function SearchResults() {
                   set.toLowerCase().includes(decodedSearch.toLowerCase()) && (
                     <li key={(set.collectionName, Math.random())}>
                       <Card bg="primary" style={{ width: "50rem" }}>
-                      <Link
-                        href={{
-                          pathname: "/viewSet",
-                          query: { user: result.collectionName, set: set },
-                        }}
-                      >
-                        <Card.Body>{set}</Card.Body>
-                      </Link>
+                        <Link
+                          href={{
+                            pathname: "/viewSet",
+                            query: { user: result.collectionName, set: set },
+                          }}
+                        >
+                          <Card.Body>{set}</Card.Body>
+                        </Link>
                       </Card>
                       <p>&nbsp;</p>
                     </li>
