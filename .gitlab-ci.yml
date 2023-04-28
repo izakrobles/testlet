@@ -1,4 +1,4 @@
-image: cypress/base:14.17.0
+image: mcr.microsoft.com/windows/servercore:ltsc2019
 
 stages:
   - build
@@ -15,7 +15,7 @@ variables:
   NEXT_TELEMETRY_DISABLED: '1'
 
 before_script:
-  - npm ci
+  - powershell -Command "npm ci"
 
 build:
   stage: build
@@ -25,7 +25,7 @@ build:
 test:
   stage: test
   script:
-    - npm run test:ci
+    - powershell -Command "npm run test:ci"
   artifacts:
     paths:
       - cypress/videos/
