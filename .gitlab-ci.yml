@@ -12,7 +12,7 @@ cypress_test:
   script:
     - npm ci
     - npx cypress install
-    - npx cypress run
+    - npx cypress run-ct --browser chrome
   artifacts:
     when: always
     paths:
@@ -21,4 +21,3 @@ cypress_test:
   only:
     - merge_requests
     - master
-
