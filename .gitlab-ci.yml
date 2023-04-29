@@ -21,5 +21,4 @@ cypress_testing:
   artifacts:
     when: always
     paths:
-      - testlet/cypress/screenshots/
       - testlet/cypress/videos/
