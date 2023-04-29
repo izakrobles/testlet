@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress": "cypress open",
-    "test": "./__tests__/simple.test.js"
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
@@ -28,7 +27,7 @@
   "devDependencies": {
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",
-    "cypress": "^12.9.0",
+    "cypress": "^12.11.0",
     "start-server-and-test": "^2.0.0",
     "typescript": "4.9.5"
   }
