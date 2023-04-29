@@ -14,19 +14,15 @@ install_dependencies:
     - cd testlet
     - npm ci
     - npx cypress install
+    - if [ $? -ne 0 ]; then exit 1; fi
 
 run_test:
   stage: test
   script:
     - npx cypress run-ct --browser chrome
-
-artifacts:
-  trigger:
+  only:
     - merge_requests
     - main
-  paths:
-    - testlet/
-
-only:
-    - merge_requests
-    - main
+  artifacts:
+    paths:
+        - testlet/
