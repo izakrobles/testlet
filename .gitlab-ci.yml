@@ -10,10 +10,7 @@ stages:
 cypress_test:
   stage: test
   script:
-    - echo "Current directory:"
-    - pwd
-    - echo "List directory content:"
-    - ls -la
+    - cd testlet
     - npm install
     - npx cypress install
     - npx cypress run-ct --browser chrome
