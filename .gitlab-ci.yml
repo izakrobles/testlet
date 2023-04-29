@@ -21,6 +21,9 @@ run_test:
     - npx cypress run-ct --browser chrome
 
 artifacts:
+  trigger:
+    - merge_requests
+    - main
   paths:
     - testlet/
 
