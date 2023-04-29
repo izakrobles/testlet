@@ -19,3 +19,11 @@ run_test:
   stage: test
   script:
     - npx cypress run-ct --browser chrome
+
+artifacts:
+  paths:
+    - testlet/
+
+only:
+    - merge_requests
+    - main
