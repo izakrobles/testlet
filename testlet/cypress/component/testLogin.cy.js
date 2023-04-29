@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "./../../pages/login";
-import Index from "./../../pages/index";
+import Login from "../../pages/login";
+import Index from "../../pages/index";
 
 describe("<Login Page />", () => {
   it("renders", () => {

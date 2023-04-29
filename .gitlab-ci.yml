@@ -1,9 +1,5 @@
 image: node:latest
 
-cache:
-  paths:
-    - testlet/node_modules/
-
 stages:
   - build
   - test
