@@ -4,15 +4,15 @@ stages:
   - compile
   - test
 
-before_script:
-  - kill $(lsof -t -i:3000)
-
 compile_website:
   stage: compile
   script:
     - cd testlet
     - npm install
-    - npm run dev
+    - npm run dev &
+    - DEV_PID=$! # capture the PID of the dev process
+    - wait $DEV_PID # wait for the dev process to complete
+    - kill $DEV_PID # kill the dev process
 
 cypress_testing:
   stage: test
