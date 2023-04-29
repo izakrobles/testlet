@@ -2,18 +2,20 @@ image: node:latest
 
 cache:
   paths:
-    - node_modules/
+    - testlet/node_modules/
 
 stages:
+  - build
   - test
 
-cypress_test:
-  stage: test
+install_dependencies:
+  stage: build
   script:
     - cd testlet
-    - npm install
+    - npm ci
     - npx cypress install
+
+run_test:
+  stage: test
+  script:
     - npx cypress run-ct --browser chrome
-  only:
-    - merge_requests
-    - main
