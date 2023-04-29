@@ -1,33 +1,22 @@
-image: cypress/base:14.17.0
-
-stages:
-  - build
-  - test
+image: cypress/base:16.13.0
 
 cache:
-  key: ${CI_COMMIT_REF_SLUG}
+  key: '${CI_COMMIT_REF_SLUG}'
   paths:
     - node_modules/
-    - .next/cache/
-    - ~/.cache/Cypress/
+    - .cache/Cypress
 
-variables:
-  NEXT_TELEMETRY_DISABLED: '1'
-
-before_script:
-  - cd ./testlet
-  - npm ci
-
-build:
-  stage: build
-  script:
-    - npm run build
+stages:
+  - test
 
 test:
   stage: test
   script:
-    - npm run test:ci
+    - npm ci
+    - npx cypress verify
+    - npx cypress run --config-file cypress.json
   artifacts:
+    when: always
     paths:
-      - cypress/videos/
-      - cypress/screenshots/
+      - cypress/videos
+      - cypress/screenshots
