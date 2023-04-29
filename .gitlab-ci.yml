@@ -20,4 +20,4 @@ cypress_test:
       - cypress/screenshots/
   only:
     - merge_requests
-    - master
+    - main
