@@ -20,7 +20,7 @@ run_test:
     - merge_requests
     - main
   artifacts:
+    when: always
     paths:
-        - testlet/node_modules/
-        - testlet/pages/
-        - testlet/styles/
+      - testlet/cypress/screenshots/
+      - testlet/cypress/videos/
