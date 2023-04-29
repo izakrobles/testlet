@@ -10,7 +10,7 @@ stages:
 cypress_test:
   stage: test
   script:
-    - npm ci
+    - npm install
     - npx cypress install
     - npx cypress run-ct --browser chrome
   artifacts:
