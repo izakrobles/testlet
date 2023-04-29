@@ -1,16 +1,14 @@
 image: node:latest
 
 stages:
-  - compile
+  - build
   - test
 
-compile_website:
-  stage: compile
+install_dependencies:
+  stage: build
   script:
     - cd testlet
-    - npm install
-    - sleep 10
-    - pkill -f "node.*\.next.*"
+    - npm ci
 
 cypress_testing:
   stage: test
