@@ -1,17 +1,21 @@
 image: node:latest
 
 stages:
-  - build
+  - compile
   - test
 
-cypress_testing:
-  stage: build
+build_app:
+  stage: compile
   script:
     - cd testlet
     - npm install
-    - npx cypress install
-    - if [ $? -ne 0 ]; then exit 1; fi
-    - npx cypress run-ct --browser chrome
+    - npm run dev
+
+cypress_testing:
+  stage: test
+  script:
+    - cd testlet
+    - npx cypress run --browser chrome
   only:
     - merge_requests
     - main
