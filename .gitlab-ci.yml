@@ -4,7 +4,7 @@ stages:
   - build
   - test
 
-install_dependencies:
+cypress_testing:
   stage: build
   script:
     - cd testlet
