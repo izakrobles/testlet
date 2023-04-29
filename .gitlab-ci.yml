@@ -11,10 +11,6 @@ install_dependencies:
     - npm install
     - npx cypress install
     - if [ $? -ne 0 ]; then exit 1; fi
-
-run_test:
-  stage: test
-  script:
     - npx cypress run-ct --browser chrome
   only:
     - merge_requests
