@@ -4,16 +4,12 @@ stages:
   - build
   - test
 
-install_dependencies:
+install_dependencies_and_run_tests:
   stage: build
   script:
     - cd testlet
     - npm ci
     - npx cypress install
-
-run_test:
-  stage: test
-  script:
     - npx cypress run-ct --browser chrome
   only:
     - merge_requests
