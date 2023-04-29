@@ -1,19 +1,13 @@
 image: node:latest
 
 stages:
-  - build
   - test
-
-install_dependencies:
-  stage: build
-  script:
-    - cd testlet
-    - npm ci
 
 cypress_testing:
   stage: test
   script:
     - cd testlet
+    - npm ci
     - npx cypress run --component --browser chrome
   only:
     - merge_requests
