@@ -3,8 +3,9 @@ image: node:latest
 stages:
   - compile
   - test
+  - deploy
 
-build_app:
+compile_website:
   stage: compile
   script:
     - cd testlet
@@ -24,3 +25,11 @@ cypress_testing:
     paths:
       - testlet/cypress/screenshots/
       - testlet/cypress/videos/
+
+end_event:
+  stage: deploy
+  script:
+    - echo "Event has ended"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push" && $CI_BUILD_STATUS == "success"
+      when: always
