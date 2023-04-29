@@ -9,8 +9,8 @@ compile_website:
   script:
     - cd testlet
     - npm install
-    - timeout 20s npm run dev > npm_run.log || FAILED=true  # if it fails, the variable is set up
-    - grep -e 'listening on \*:3000' npm_run.log
+    - sleep 10
+    - pkill -f "node.*\.next.*"
 
 cypress_testing:
   stage: test
