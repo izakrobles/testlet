@@ -9,10 +9,8 @@ compile_website:
   script:
     - cd testlet
     - npm install
-    - npm run dev &
-    - DEV_PID=$! # capture the PID of the dev process
-    - wait $DEV_PID # wait for the dev process to complete
-    - kill $DEV_PID # kill the dev process
+    - timeout 20s npm run dev > npm_run.log || FAILED=true  # if it fails, the variable is set up
+    - grep -e 'listening on \*:3000' npm_run.log
 
 cypress_testing:
   stage: test
