@@ -17,19 +17,19 @@ function Study() {
   const [flashcards, setFlashcards] = useState([]);
   const [key, setKey] = useState(0); // unique on the id
 
-  /* retrieves flashcards */
+  // retrieves flashcards
   const [raw, loading, error] = useCollection(
     collection(db, "sets", decodedUser, decodedSet)
   );
 
-  /* sets flashcards */
+  // sets flashcards
   useEffect(() => {
     if (raw) {
       setFlashcards(raw.docs);
     }
   }, [raw]);
 
-  /* Handles navigating through the cards with the keys on the keyboard*/
+  // Handles navigating through the cards with the keys on the keyboard
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.keyCode === 37 && iterator > 0) {

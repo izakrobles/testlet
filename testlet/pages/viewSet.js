@@ -29,7 +29,7 @@ function ViewSet() {
   const [isLoading, setLoading] = useState(false);
   const [userState, loadingB, errorB] = useAuthState(auth);
 
-  /* Only give the user the option to edit if they are the author of the set */
+  // Only give the user the option to edit if they are the author of the set
   useEffect(() => {
     if (userState) {
       if (userState.displayName === decodedUser) {
@@ -40,7 +40,7 @@ function ViewSet() {
     }
   }, [userState, decodedUser]);
 
-  /* fetches flashcards */
+  // fetches flashcards
   const [flashcards, loading, error] = useCollection(
     collection(db, "sets", decodedUser, decodedSet)
   );

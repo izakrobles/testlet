@@ -42,7 +42,7 @@ function EditSet() {
     collection(db, "sets", decodedUser, decodedSet)
   );
 
-  /* This retrieves the flsahcard info and sets the values to the inputs */
+  // This retrieves the flsahcard info and sets the values to the inputs
   useEffect(() => {
     if (raw && first) {
       let flashInput = [];
