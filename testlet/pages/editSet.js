@@ -20,13 +20,13 @@ import Link from "next/link";
 import Going from "./components/going";
 
 function EditSet() {
-  const [popupA, showPopupA] = useState(false);
-  const [popupB, showPopupB] = useState(false);
+  const [popupA, showPopupA] = useState(false); // You have not added content to Q an A
+  const [popupB, showPopupB] = useState(false); // You have not created title or added sets
   const [created, setCreated] = useState(false);
   const [flashcards, setFlashcards] = useState([]);
   const [title, setTitle] = useState("");
-  const [oldTitle, setOldTitle] = useState("");
-  const [prevTitle, setPrevTitle] = useState("");
+  const [oldTitle, setOldTitle] = useState(""); // Stores the title before it is saved
+  const [prevTitle, setPrevTitle] = useState(""); // Stores the title after it is saved
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [saving, setSaving] = useState(false);
@@ -42,6 +42,7 @@ function EditSet() {
     collection(db, "sets", decodedUser, decodedSet)
   );
 
+  /* This retrieves the flsahcard info and sets the values to the inputs */
   useEffect(() => {
     if (raw && first) {
       let flashInput = [];
@@ -55,7 +56,7 @@ function EditSet() {
     }
   }, [raw]);
 
-  const [userState, loading, error] = useAuthState(auth);
+  const [userState, loading, error] = useAuthState(auth); // Gets Account
 
   if (loading | loadingB) {
     return <Loading />;
@@ -66,6 +67,7 @@ function EditSet() {
   }
 
   if (!userState) {
+    //Makes sure you must be logged in to view this screen
     return (
       <div>
         <Going />
@@ -79,6 +81,11 @@ function EditSet() {
     );
   }
 
+  /* 
+    Firebase does not let you delete a collection
+    You must delete all documents from a collection in order to
+    "delete" the colection
+   */
   const deleteAllDocumentsInCollection = async (collectionRef) => {
     const q = query(collectionRef);
     const querySnapshot = await getDocs(q);
@@ -112,7 +119,7 @@ function EditSet() {
 
   const handleEditFlashcard = (index) => {
     if (typeof window !== "undefined") {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0); //Brings the view to the top of the page when editing
     }
     setQuestion(flashcards[index].question);
     setAnswer(flashcards[index].answer);

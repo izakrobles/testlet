@@ -7,7 +7,7 @@ import { updateProfile } from "firebase/auth";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Tab, Tabs } from "react-bootstrap";
 import { doc, getDoc } from "firebase/firestore";
-import { imageMap } from "./components/profilePictures";
+import { imageMap } from "@/data//profilePictures";
 import Loading from "./components/loading";
 
 const Account = () => {

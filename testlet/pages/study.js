@@ -13,20 +13,23 @@ function Study() {
   const decodedSet = decodeURIComponent(set);
   const decodedUser = decodeURIComponent(user);
 
-  const [iterator, setIterator] = useState(0);
+  const [iterator, setIterator] = useState(0); // Keeps track of which flashcard is being viewed
   const [flashcards, setFlashcards] = useState([]);
-  const [key, setKey] = useState(0);
+  const [key, setKey] = useState(0); // unique on the id
 
+  /* retrieves flashcards */
   const [raw, loading, error] = useCollection(
     collection(db, "sets", decodedUser, decodedSet)
   );
 
+  /* sets flashcards */
   useEffect(() => {
     if (raw) {
       setFlashcards(raw.docs);
     }
   }, [raw]);
 
+  /* Handles navigating through the cards with the keys on the keyboard*/
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.keyCode === 37 && iterator > 0) {
@@ -104,7 +107,7 @@ function Study() {
               style={{
                 backgroundColor: "#004aad",
                 height: "0.5rem",
-                width: `${progress}%`,
+                width: `${progress}%`, //dynamically handles the size of the progress bar
                 borderRadius: "0.25rem",
               }}
             ></div>
@@ -113,7 +116,7 @@ function Study() {
       )}
       {flashcard && (
         <div className="flashcard">
-          <FlipCard
+          <FlipCard //shows the card that interator points to
             key={key}
             question={flashcard.data().question}
             answer={flashcard.data().answer}
