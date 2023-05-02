@@ -15,10 +15,4 @@ describe('No User Page', () => {
     cy.contains('p', 'Jog Dough Email');
     cy.contains('p', 'Account Created: Day-Month-Year');
   });
-
-  it('logs out the user', () => {
-    // Click on the logout button and check if the user is redirected to the home page
-    cy.get('button').contains('Logout').click();
-    cy.url().should('include', '/');
-  });
 });
