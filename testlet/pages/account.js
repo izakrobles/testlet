@@ -133,7 +133,7 @@ const Account = () => {
                     </div>
                   ))
                 ) : (
-                  <p>No recent sets found.</p> //displays if could not find or error
+                  <p>No recent sets found.</p> //displays if could not find any sets or error
                 )}
               </Tab>
               <Tab eventKey="3" title="Stats">
