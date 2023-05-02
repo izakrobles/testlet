@@ -124,7 +124,7 @@ const Account = () => {
                       <Link
                         href={{
                           pathname: "/viewSet",
-                          query: { user: username, set: setName },
+                          query: { user: userState.displayName, set: setName },
                         }}
                       >
                         <p>{setName}</p>
