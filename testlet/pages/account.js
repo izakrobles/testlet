@@ -56,7 +56,7 @@ const Account = () => {
   };
 
   useEffect(() => { //loading in sets from users db
-    if (!loading && username) { //renders them after loading done and username found
+    if (!loading && username) { //renders after loading done and username found
       const getRecentSets = async () => {
         const documentSnapshot = await getDoc(doc(db, "sets", userState.displayName));
         if (documentSnapshot.exists()) {
@@ -89,7 +89,7 @@ const Account = () => {
                   <div className="d-flex align-items-center">
                     <a href="#" onClick={() => setShowModal(true)}>
                       <img
-                        src={local.photoURL || "/nopfp.png"} //defults to user picture or none
+                        src={local.photoURL || "/nopfp.png"} //defaults to user picture or none
                         className="profile-pic"
                         title="Change profile picture"
                       />
