@@ -57,7 +57,7 @@ const Account = () => {
   useEffect(() => {
     if (!loading && username) {
       const getRecentSets = async () => {
-        const documentSnapshot = await getDoc(doc(db, "sets", username));
+        const documentSnapshot = await getDoc(doc(db, "sets", userState.displayName));
         if (documentSnapshot.exists()) {
           const userData = documentSnapshot.data();
           setRecentSets(userData.UserSets.slice(0, 4));
