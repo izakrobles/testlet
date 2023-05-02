@@ -72,7 +72,7 @@ const noUser = () => {
             </Tab>
           </Tabs>
           <Link href="/">
-            <Button onClick={handleLogout}>Logout</Button>
+            <Button>Logout</Button>
           </Link>
         </Container>
       </div>
