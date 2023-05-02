@@ -1,5 +1,5 @@
 // Import the `noUser` component
-import NoUser from '../pages/noUser';
+import NoUser from "../../pages/noUser";
 import React from "react";
 
 describe('No User Page', () => {
