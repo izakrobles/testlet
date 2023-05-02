@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { auth, db } from "../firebase/clientApp";
 import React, { useState, useEffect } from "react";
@@ -67,6 +68,13 @@ const Account = () => {
       getRecentSets();
     }
   }, [loading, username]);
+
+  const router = useRouter(); //forces unlogged in users to different page.
+  useEffect(() => {
+    if (!loading && !userState) {
+      router.push("/noUser");
+    }
+  }, [loading, userState]);
 
   return (
     <>
