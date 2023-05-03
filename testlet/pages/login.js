@@ -93,7 +93,7 @@ function Login() {
     }
   };
 
-  /* opens up the register form */
+  /* Collect all input fields in register form and attempts to register the user */
   const handleRegister = async (e) => {
     e.preventDefault();
     const signupForm = document.querySelector("#signup-form");

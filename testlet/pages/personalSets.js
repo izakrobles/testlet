@@ -10,6 +10,7 @@ function PersonalSets() {
   const [userState, loading, error] = useAuthState(auth);
   const [sets, setSets] = useState([]);
 
+  // Gets names of collection under the logged in user
   useEffect(() => {
     if (!loading && userState) {
       const handleGetSets = async () => {
@@ -58,7 +59,6 @@ function PersonalSets() {
                   }}
                 >
                   <Card.Body>{setName}</Card.Body>
-                  {/* <Card.Subtitle>{flashcards.length}</Card.Subtitle> */}
                 </Link>
               </Card>
               <p>&nbsp;</p>

@@ -1,14 +1,11 @@
 import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
-import dat from "@/public/go.json";
-{
-  /* Data shorthand used by lottie */
-}
+import dat from "@/public/go.json"; // Data shorthand used by lottie
 
 function Going() {
   const container = useRef(null);
 
-  useEffect(() => {
+  useEffect(() => { // Loads our not logged in error animation in a loop
     const anim = lottie.loadAnimation({
       animationData: dat,
       container: container.current,
@@ -21,7 +18,7 @@ function Going() {
     };
   }, []);
 
-  return (
+  return ( // Container for animation
     <div
       ref={container}
       style={{
