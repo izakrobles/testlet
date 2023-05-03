@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { auth, db } from "../firebase/clientApp";
 import React, { useState, useEffect } from "react";
@@ -29,7 +30,7 @@ const Account = () => {
   };
 
   const local = auth.currentUser;
-  const username = local && local.email.split("@")[0];
+  const username = local && local.email.split("@")[0]; //psudeo username used to mirror quizlet
 
   const [recentSets, setRecentSets] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -54,10 +55,10 @@ const Account = () => {
     }
   };
 
-  useEffect(() => {
-    if (!loading && username) {
+  useEffect(() => { //loading in sets from users db
+    if (!loading && username) { //renders the sets after loading done and username found
       const getRecentSets = async () => {
-        const documentSnapshot = await getDoc(doc(db, "sets", username));
+        const documentSnapshot = await getDoc(doc(db, "sets", userState.displayName));
         if (documentSnapshot.exists()) {
           const userData = documentSnapshot.data();
           setRecentSets(userData.UserSets.slice(0, 4));
@@ -67,6 +68,13 @@ const Account = () => {
       getRecentSets();
     }
   }, [loading, username]);
+
+  const router = useRouter(); //forces unlogged in users to different page.
+  useEffect(() => {
+    if (!loading && !userState) {
+      router.push("/noUser");
+    }
+  }, [loading, userState]);
 
   return (
     <>
@@ -81,7 +89,7 @@ const Account = () => {
                   <div className="d-flex align-items-center">
                     <a href="#" onClick={() => setShowModal(true)}>
                       <img
-                        src={local.photoURL || "/nopfp.png"}
+                        src={local.photoURL || "/nopfp.png"} //defaults to user picture or none
                         className="profile-pic"
                         title="Change profile picture"
                       />
@@ -100,7 +108,7 @@ const Account = () => {
             <Tabs
               className="account-tab"
               activeKey={activeTab}
-              onSelect={(selectedTab) => toggle(selectedTab)}
+              onSelect={(selectedTab) => toggle(selectedTab)} //allows tab switching
             >
               <Tab eventKey="1" title="Account Information">
                 <h4>Account Information</h4>
@@ -110,13 +118,13 @@ const Account = () => {
               </Tab>
               <Tab eventKey="2" title="Recent Sets">
                 <h4>Recent Sets</h4>
-                {recentSets.length > 0 ? (
+                {recentSets.length > 0 ? ( //makes sure there is at least one recent set
                   recentSets.map((setName, index) => (
                     <div key={index}>
                       <Link
                         href={{
                           pathname: "/viewSet",
-                          query: { user: username, set: setName },
+                          query: { user: userState.displayName, set: setName },
                         }}
                       >
                         <p>{setName}</p>
@@ -125,7 +133,7 @@ const Account = () => {
                     </div>
                   ))
                 ) : (
-                  <p>No recent sets found.</p>
+                  <p>No recent sets found.</p> //displays if could not find any sets or error
                 )}
               </Tab>
               <Tab eventKey="3" title="Stats">
