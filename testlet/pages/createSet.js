@@ -15,6 +15,7 @@ import Link from "next/link";
 import Going from "./components/going";
 
 function CreateSet() {
+  // useStates to manage popups and values within the textboxes
   const [popupA, showPopupA] = useState(false);
   const [popupB, showPopupB] = useState(false);
   const [created, setCreated] = useState(false);
@@ -106,7 +107,7 @@ function CreateSet() {
 
   const handleSaveSetButton = async (event) => {
     event.preventDefault();
-    if (title === "" || flashcards.length < 1) {
+    if (title === "" || flashcards.length < 1) { // Make sure there is content to be saved
       showPopupB(true);
       setTimeout(() => {
         showPopupB(false);
@@ -114,6 +115,7 @@ function CreateSet() {
       return;
     }
     setSaving(true);
+    // Saves the set
     const collectionRef = collection(db, "sets", user, title);
     for (const flashcard of flashcards) {
       await addDoc(collectionRef, {
@@ -121,7 +123,7 @@ function CreateSet() {
         answer: flashcard.answer,
       });
     }
-
+    // Saves the set name to the list of names
     const docRef = doc(db, "sets", user);
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
@@ -131,13 +133,14 @@ function CreateSet() {
     } else {
       await setDoc(docRef, { UserSets: [title] });
     }
+    // Clears parameters
     setPrevTitle(title);
     setTitle("");
     setAnswer("");
     setQuestion("");
     setFlashcards([]);
     setSaving(false);
-
+    // Shows popUp saying it was saved
     setCreated(true);
     setTimeout(() => {
       setCreated(false);
@@ -198,11 +201,12 @@ function CreateSet() {
           +
         </button>
       </div>
-
+      {/* Maps the created flashcards to the page as the user creates them */}
       {flashcards.map((flashcard, index) => (
         <div key={index}>
           <div className="flashcard-container-outer">
             <div
+              // A user can edit a card when they click on it
               onClick={() => handleEditFlashcard(index)}
               style={{ width: "100%" }}
             >
@@ -212,6 +216,7 @@ function CreateSet() {
               />
             </div>
             <button
+              // A user can delete a card when they press this button
               className="delete-card-button"
               onClick={() => handleDeleteFlashcard(index)}
             >
