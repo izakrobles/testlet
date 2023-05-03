@@ -72,7 +72,7 @@ const Account = () => {
   const router = useRouter(); //forces unlogged in users to different page.
   useEffect(() => {
     if (!loading && !userState) {
-      router.push("/noUser");
+      router.push("/login");
     }
   }, [loading, userState]);
 
@@ -120,7 +120,8 @@ const Account = () => {
                 <h4>Recent Sets</h4>
                 {recentSets.length > 0 ? ( //makes sure there is at least one recent set
                   recentSets.map((setName, index) => (
-                    <div key={index}>
+                    <ul key={index}>
+                      <li>
                       <Link
                         href={{
                           pathname: "/viewSet",
@@ -129,8 +130,8 @@ const Account = () => {
                       >
                         <p>{setName}</p>
                       </Link>
-                      <p>&nbsp;</p>
-                    </div>
+                      </li>
+                    </ul>
                   ))
                 ) : (
                   <p>No recent sets found.</p> //displays if could not find any sets or error
