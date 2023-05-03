@@ -5,7 +5,7 @@ import dat from "@/public/loading.json";
 function Loading() {
   const container = useRef(null);
 
-  useEffect(() => {
+  useEffect(() => { // Loads our loading animation in a loop
     const anim = lottie.loadAnimation({
       animationData: dat,
       container: container.current,
@@ -18,8 +18,8 @@ function Loading() {
     };
   }, []);
 
-  return (
-    <div
+  return ( // Container for animation
+    <div 
       ref={container}
       style={{
         height: "100%",

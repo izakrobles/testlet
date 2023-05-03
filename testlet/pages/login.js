@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { auth } from "../firebase/clientApp";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
