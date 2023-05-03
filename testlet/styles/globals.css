@@ -157,7 +157,7 @@ main {
   margin-left: -1.6vw;
 }
 
-/* Create Sets Page */
+/* Create Sets Page Styling*/
 .navigateNew {
   text-align: center;
   align-self: center;
@@ -338,7 +338,7 @@ main {
   }
 }
 
-/* Flipcard CSS */
+/* Flipcard Styling*/
 .FlipCard-container {
   display: flex;
   justify-content: center;
@@ -393,7 +393,7 @@ main {
   transform: rotateX(180deg);
 }
 
-/* Login Styling */
+/* Login Page Styling*/
 
 .my-login .container {
   height: 100vh;
@@ -415,8 +415,8 @@ main {
   margin-bottom: 20px;
 }
 
+/* set initial forms to invis */
 .forms .signup {
-  /* set initial forms to invis */
   opacity: 0;
   pointer-events: none;
 }
@@ -426,8 +426,8 @@ main {
   pointer-events: none;
 }
 
+/* show signup form */
 .forms.show-signup .signup {
-  /* show signup form */
   opacity: 1;
   pointer-events: auto;
 }
@@ -437,8 +437,8 @@ main {
   pointer-events: none;
 }
 
+/* show forgotpwd form*/
 .forms.show-forgotpwd .forgotpwd {
-  /* show forgotpwd form*/
   opacity: 1;
   pointer-events: auto;
 }
@@ -590,7 +590,7 @@ a.google span {
   color: #232836;
 }
 
-/* Home Page and About page*/
+/* Home Page and About page Styling*/
 
 .feature-title {
   color: black;
@@ -600,7 +600,7 @@ a.google span {
   color: white;
 }
 
-/* account page stuff */
+/* account page Styling*/
 .account-tab {
   background-color: rgba(0, 0, 0, 0);
   display: flex;
@@ -640,6 +640,7 @@ a.google span {
   border-bottom: 2px solid;
 }
 
+/* handles the modal styling that opens up from the account page */
 .modal-body {
   display: flex;
   flex-wrap: wrap;
