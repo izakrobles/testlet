@@ -10,7 +10,7 @@ function PersonalSets() {
   const [userState, loading, error] = useAuthState(auth);
   const [sets, setSets] = useState([]);
 
-  /* Gets names of collection under the logged in user */
+  // Gets names of collection under the logged in user
   useEffect(() => {
     if (!loading && userState) {
       const handleGetSets = async () => {
