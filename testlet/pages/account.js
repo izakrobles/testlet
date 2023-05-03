@@ -72,7 +72,7 @@ const Account = () => {
   const router = useRouter(); //forces unlogged in users to different page.
   useEffect(() => {
     if (!loading && !userState) {
-      router.push("/noUser");
+      router.push("/login");
     }
   }, [loading, userState]);
 
