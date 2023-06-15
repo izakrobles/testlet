@@ -36,6 +36,7 @@ function Login() {
     signInWithRedirect(auth, google);
   };
 
+  /* Toggles between showing password text and hiding password in input field */
   const handleShowHideClick = (eyeIcon) => {
     const pwFields = document.querySelectorAll(".password-field");
     pwFields.forEach((password) => {
@@ -68,11 +69,13 @@ function Login() {
       });
   };
 
+  /* returns to the login page */
   const handleReturnToLogin = (e) => {
     e.preventDefault();
     window.location.href = "/login";
   };
 
+  /* opens up the register form */
   const handleRegisterLink = (e) => {
     e.preventDefault();
     const container = document.querySelector(".container");
@@ -81,6 +84,7 @@ function Login() {
     }
   };
 
+  /* opens up the forgot password form */
   const handleForgotPwdLink = (e) => {
     e.preventDefault();
     const container = document.querySelector(".container");
@@ -89,6 +93,7 @@ function Login() {
     }
   };
 
+  /* Collect all input fields in register form and attempts to register the user */
   const handleRegister = async (e) => {
     e.preventDefault();
     const signupForm = document.querySelector("#signup-form");

@@ -157,7 +157,7 @@ main {
   margin-left: -1.6vw;
 }
 
-/* Create Sets Page */
+/* Create Sets Page Styling*/
 .navigateNew {
   text-align: center;
   align-self: center;
@@ -230,6 +230,7 @@ main {
   color: white;
 }
 
+.button-middle:hover,
 .button-single:hover,
 .create-set-button:hover,
 .delete-card-button:hover,
@@ -271,6 +272,12 @@ main {
   border-top-right-radius: 20px;
 }
 
+.button-middle {
+  background-color: #004aad;
+  color: white;
+  width: 10%;
+}
+
 .button-single {
   background-color: #004aad;
   color: white;
@@ -283,6 +290,20 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -200%);
+  padding: 40px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.delete-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 40px;
   background-color: white;
   border: 1px solid black;
@@ -338,7 +359,7 @@ main {
   }
 }
 
-/* Flipcard CSS */
+/* Flipcard Styling*/
 .FlipCard-container {
   display: flex;
   justify-content: center;
@@ -350,8 +371,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
-  width: 500px;
+  height: 350px;
+  width: 550px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -370,12 +391,13 @@ main {
   position: absolute;
   width: 100%;
   height: 100%;
-  font-size: 175%;
+  max-height: 100%;
   text-align: center;
   background-color: white;
   border-radius: 15px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  font-size: 1.75vw;
 }
 
 .flip-card-front,
@@ -394,7 +416,6 @@ main {
 }
 
 /* Login Styling */
-
 .my-login .container {
   height: 100vh;
   width: 100%;
@@ -415,8 +436,8 @@ main {
   margin-bottom: 20px;
 }
 
+/* set initial forms to invis */
 .forms .signup {
-  /* set initial forms to invis */
   opacity: 0;
   pointer-events: none;
 }
@@ -426,8 +447,8 @@ main {
   pointer-events: none;
 }
 
+/* show signup form */
 .forms.show-signup .signup {
-  /* show signup form */
   opacity: 1;
   pointer-events: auto;
 }
@@ -437,8 +458,8 @@ main {
   pointer-events: none;
 }
 
+/* show forgotpwd form*/
 .forms.show-forgotpwd .forgotpwd {
-  /* show forgotpwd form*/
   opacity: 1;
   pointer-events: auto;
 }
@@ -576,21 +597,24 @@ img.google-icon {
   left: 15px;
   transform: translateY(-50%);
 }
+
 img.google-icon {
   height: 20px;
   width: 20px;
   object-fit: cover;
 }
+
 a.google {
   border: 1px solid #cacaca;
 }
+
 a.google span {
   font-weight: 500;
   opacity: 0.6;
   color: #232836;
 }
 
-/* Home Page and About page*/
+/* Home Page and About page Styling*/
 
 .feature-title {
   color: black;
@@ -600,7 +624,7 @@ a.google span {
   color: white;
 }
 
-/* account page stuff */
+/* account page Styling*/
 .account-tab {
   background-color: rgba(0, 0, 0, 0);
   display: flex;
@@ -640,6 +664,7 @@ a.google span {
   border-bottom: 2px solid;
 }
 
+/* handles the modal styling that opens up from the account page */
 .modal-body {
   display: flex;
   flex-wrap: wrap;
@@ -743,10 +768,8 @@ a.google span {
   color: #007bff;
   display: block;
   margin: 0 auto;
-
 }
 
 .modal-user-input button:hover {
   background-color: #0069d9;
 }
-

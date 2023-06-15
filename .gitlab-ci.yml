@@ -3,17 +3,17 @@ image: node:latest
 stages:
   - test
 
-
 cypress_testing:
   stage: test
   script:
     - cd testlet
     - npm ci
-    - npx cypress run --browser chrome
+    - npx cypress run --component --browser chrome
   only:
     - merge_requests
     - main
   artifacts:
     when: always
     paths:
+      - testlet/cypress/screenshots/
       - testlet/cypress/videos/
